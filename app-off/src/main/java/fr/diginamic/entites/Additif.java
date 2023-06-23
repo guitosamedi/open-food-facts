@@ -1,4 +1,4 @@
-package fr.diginamic.entite;
+package fr.diginamic.entites;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Marque {
+public class Additif {
     @Id
     @GeneratedValue
     private int id;
@@ -14,9 +14,9 @@ public class Marque {
     @Column(length=100)
     private String nom;
 
-    public Marque() {}
+    public Additif() {}
 
-    public Marque(int id, String nom) {
+    public Additif(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }

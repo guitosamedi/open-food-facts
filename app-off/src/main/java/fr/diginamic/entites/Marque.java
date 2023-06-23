@@ -1,4 +1,4 @@
-package fr.diginamic.entite;
+package fr.diginamic.entites;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Allergene {
+public class Marque {
     @Id
     @GeneratedValue
     private int id;
@@ -14,9 +14,9 @@ public class Allergene {
     @Column(length=100)
     private String nom;
 
-    public Allergene() {}
+    public Marque() {}
 
-    public Allergene(int id, String nom) {
+    public Marque(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }
