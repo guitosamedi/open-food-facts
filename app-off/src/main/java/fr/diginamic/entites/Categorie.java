@@ -1,9 +1,9 @@
 package fr.diginamic.entites;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Categorie {
@@ -13,10 +13,40 @@ public class Categorie {
 
     private String nom;
 
+    @OneToMany(mappedBy = "categorie")
+    private Set<Produit> produits = new HashSet<>();
+
     public Categorie() {}
 
     public Categorie(int id, String nom) {
         this.id = id;
         this.nom = nom;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void addProduit(Produit produit){
+        produit.setCategorie(this);
+    }
+    public Set<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(Set<Produit> produits) {
+        this.produits = produits;
     }
 }
