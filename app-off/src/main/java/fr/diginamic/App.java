@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("app-off");
         EntityManager em = emf.createEntityManager();
-
+        System.out.println(em);
         em.close();
         emf.close();
     }

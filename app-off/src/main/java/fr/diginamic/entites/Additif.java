@@ -1,9 +1,9 @@
 package fr.diginamic.entites;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Additif {
@@ -13,6 +13,9 @@ public class Additif {
 
     @Column(length=100)
     private String nom;
+
+    @ManyToMany(mappedBy = "additifs")
+    private Set<Produit> produits = new HashSet<>();
 
     public Additif() {}
 
@@ -35,5 +38,13 @@ public class Additif {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Set<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(Set<Produit> produits) {
+        this.produits = produits;
     }
 }

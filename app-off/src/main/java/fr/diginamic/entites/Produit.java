@@ -1,6 +1,5 @@
 package fr.diginamic.entites;
 import jakarta.persistence.*;
-import fr.diginamic.entites.Categorie;
 
 import java.util.Set;
 
@@ -23,15 +22,35 @@ public class Produit {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="id")
+    private Marque marque;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="id")
     private Categorie categorie;
 
+    /*** Association Contient **/
     @ManyToMany(cascade = CascadeType.PERSIST)
-   @JoinTable(name= "produit_ingredient",
+    @JoinTable(name= "produit_ingredient",
            joinColumns = @JoinColumn(name="id_produit", referencedColumnName = "id"),
            inverseJoinColumns = @JoinColumn(name="id_ingredient", referencedColumnName = "id")
     )
     private Set<Ingredient> ingredients;
 
+    /*** Association A **/
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name= "produit_allergene",
+            joinColumns = @JoinColumn(name="id_produit", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="id_allergene", referencedColumnName = "id")
+    )
+    private Set<Allergene> allergenes;
+
+    /*** Association Possede **/
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name= "produit_additif",
+            joinColumns = @JoinColumn(name="id_produit", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="id_additif", referencedColumnName = "id")
+    )
+    private Set<Additif> additifs;
 
     public Produit(){};
 
@@ -82,6 +101,18 @@ public class Produit {
         this.score = score;
     }
 
+    public Marque getMarque() {
+        return marque;
+    }
+
+    public void setMarque(Marque marque) {
+        if(null != this.marque){
+            this.marque.getProduits().remove(this);
+        }
+        marque.getProduits().add(this);
+        this.marque = marque;
+    }
+
     public Categorie getCategorie() {
         return categorie;
     }
@@ -111,6 +142,43 @@ public class Produit {
         this.ingredients.remove(ingredient);
         ingredient.getProduits().remove(this);
     }
+
+    public Set<Allergene> getAllergenes() {
+        return allergenes;
+    }
+
+    public void setAllergenes(Set<Allergene> allergenes) {
+        this.allergenes = allergenes;
+    }
+
+    public void addAllergene(Allergene allergene){
+        this.allergenes.add(allergene);
+        allergene.getProduits().add(this);
+    }
+
+    public void removeAllergene(Allergene allergene){
+        this.allergenes.remove(allergene);
+        allergene.getProduits().remove(this);
+    }
+
+    public Set<Additif> getAdditifs() {
+        return additifs;
+    }
+
+    public void setAdditifs(Set<Additif> additifs) {
+        this.additifs = additifs;
+    }
+
+    public void addAdditif(Additif additif){
+        this.additifs.add(additif);
+        additif.getProduits().add(this);
+    }
+
+    public void removeAdditif(Additif additif){
+        this.additifs.remove(additif);
+        additif.getProduits().remove(this);
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Produit{");
