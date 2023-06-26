@@ -25,8 +25,8 @@ public class Menu {
     public void exec() {
         Scanner scanner = ScannerProvider.getScanner();
         int input;
-        EntreeMenu choix;
-        do {
+        EntreeMenu choix = null;
+        while (null == choix || choix.getType() != TypeEntreeMenu.QUIT) {
             System.out.println(this);
             System.out.println("Que souhaitez-vous faire ? ");
             input = scanner.nextInt();
@@ -38,7 +38,7 @@ public class Menu {
             if (choix.getType() == TypeEntreeMenu.ACTION) {
                 choix.action();
             }
-        } while (null == choix || choix.getType() != TypeEntreeMenu.QUIT);
+        }
     }
 
 
