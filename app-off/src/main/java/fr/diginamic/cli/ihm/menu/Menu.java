@@ -1,8 +1,8 @@
-package fr.diginamic.cli.menu;
+package fr.diginamic.cli.ihm.menu;
 
 import fr.diginamic.cli.ScannerProvider;
-import fr.diginamic.cli.menu.entree.EntreeMenu;
-import fr.diginamic.cli.menu.entree.TypeEntreeMenu;
+import fr.diginamic.cli.ihm.menu.entree.EntreeMenu;
+import fr.diginamic.cli.ihm.menu.entree.TypeEntreeMenu;
 
 import java.util.HashMap;
 import java.util.Map;

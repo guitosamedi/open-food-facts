@@ -1,8 +1,8 @@
 package fr.diginamic.cli;
 
-import fr.diginamic.cli.menu.Menu;
-import fr.diginamic.cli.menu.entree.NMeilleurProduitParMarqueEntreeMenu;
-import fr.diginamic.cli.menu.entree.QuitterEntreeMenu;
+import fr.diginamic.cli.ihm.menu.Menu;
+import fr.diginamic.cli.ihm.menu.entree.NMeilleurProduitParMarqueEntreeMenu;
+import fr.diginamic.cli.ihm.menu.entree.QuitterEntreeMenu;
 
 public class OffCliApp {
     public static void main(String[] args) {

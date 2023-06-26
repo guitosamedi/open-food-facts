@@ -1,4 +1,4 @@
-package fr.diginamic.cli.menu.entree;
+package fr.diginamic.cli.ihm.menu.entree;
 
 public abstract class EntreeMenu{
     private final String libelle;
