@@ -17,7 +17,6 @@ public class Marque {
     @OneToMany(mappedBy = "marque")
     private Set<Produit> produits = new HashSet<>();
 
-
     public Marque() {}
 
     public Marque(int id, String nom) {
@@ -49,4 +48,7 @@ public class Marque {
         this.produits = produits;
     }
 
+    public void addProduit(Produit produit){
+        produit.setMarque(this);
+    }
 }

@@ -21,11 +21,11 @@ public class Produit {
     private ProduitScore score;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="id")
+    @JoinColumn(name="id_marque")
     private Marque marque;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="id")
+    @JoinColumn(name="id_categorie")
     private Categorie categorie;
 
     /*** Association Contient **/
@@ -109,7 +109,10 @@ public class Produit {
         if(null != this.marque){
             this.marque.getProduits().remove(this);
         }
-        marque.getProduits().add(this);
+        if(null != marque){
+            marque.getProduits().add(this);
+        }
+
         this.marque = marque;
     }
 
@@ -121,7 +124,9 @@ public class Produit {
         if(null != this.categorie){
             this.categorie.getProduits().remove(this);
         }
-        categorie.getProduits().add(this);
+        if(null != categorie){
+            categorie.getProduits().add(this);
+        }
         this.categorie = categorie;
     }
 
@@ -134,13 +139,18 @@ public class Produit {
     }
 
     public void addIngredient(Ingredient ingredient){
-        this.ingredients.add(ingredient);
-        ingredient.getProduits().add(this);
+        if (null != ingredient) {
+            this.ingredients.add(ingredient);
+            ingredient.getProduits().add(this);
+        }
+
     }
 
     public void removeIngredient(Ingredient ingredient){
-        this.ingredients.remove(ingredient);
-        ingredient.getProduits().remove(this);
+        if (null != ingredient) {
+            this.ingredients.remove(ingredient);
+            ingredient.getProduits().remove(this);
+        }
     }
 
     public Set<Allergene> getAllergenes() {
@@ -152,13 +162,17 @@ public class Produit {
     }
 
     public void addAllergene(Allergene allergene){
-        this.allergenes.add(allergene);
-        allergene.getProduits().add(this);
+        if (null != allergene) {
+            this.allergenes.add(allergene);
+            allergene.getProduits().add(this);
+        }
     }
 
     public void removeAllergene(Allergene allergene){
-        this.allergenes.remove(allergene);
-        allergene.getProduits().remove(this);
+        if (null != allergene) {
+            this.allergenes.remove(allergene);
+            allergene.getProduits().remove(this);
+        }
     }
 
     public Set<Additif> getAdditifs() {
@@ -170,13 +184,17 @@ public class Produit {
     }
 
     public void addAdditif(Additif additif){
-        this.additifs.add(additif);
-        additif.getProduits().add(this);
+        if (null != additif) {
+            this.additifs.add(additif);
+            additif.getProduits().add(this);
+        }
     }
 
     public void removeAdditif(Additif additif){
-        this.additifs.remove(additif);
-        additif.getProduits().remove(this);
+        if (null != additif) {
+            this.additifs.remove(additif);
+            additif.getProduits().remove(this);
+        }
     }
 
     @Override

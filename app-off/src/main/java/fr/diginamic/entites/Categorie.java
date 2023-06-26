@@ -39,9 +39,6 @@ public class Categorie {
         this.nom = nom;
     }
 
-    public void addProduit(Produit produit){
-        produit.setCategorie(this);
-    }
     public Set<Produit> getProduits() {
         return produits;
     }
@@ -49,4 +46,8 @@ public class Categorie {
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
+    public void addProduit(Produit produit){
+        produit.setCategorie(this);
+    }
+
 }
