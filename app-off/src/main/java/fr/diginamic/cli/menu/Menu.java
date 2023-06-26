@@ -1,34 +1,50 @@
 package fr.diginamic.cli.menu;
 
+import fr.diginamic.cli.ScannerProvider;
 import fr.diginamic.cli.menu.entree.EntreeMenu;
+import fr.diginamic.cli.menu.entree.TypeEntreeMenu;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Menu {
 
-    private final List<EntreeMenu> entreesMenu;
+    private final Map<Integer, EntreeMenu> entreesMenuParPosition;
 
     private final String name;
 
     {
-        entreesMenu = new ArrayList<>();
+        entreesMenuParPosition = new HashMap<>();
     }
 
     public Menu(String name) {
         this.name = name;
     }
 
-    public void addEntreeMenu(EntreeMenu entreeMenu) {
-        if (null != entreeMenu) {
-            entreesMenu.add(entreeMenu);
-            entreesMenu.sort(null);
-        }
+    public void exec() {
+        Scanner scanner = ScannerProvider.getScanner();
+        int input;
+        EntreeMenu choix;
+        do {
+            System.out.println(this);
+            System.out.println("Que souhaitez-vous faire ? ");
+            input = scanner.nextInt();
+            choix = entreesMenuParPosition.get(input);
+            if (null == choix) {
+                System.out.println("Choix " + input + " invalid.");
+                continue;
+            }
+            if (choix.getType() == TypeEntreeMenu.ACTION) {
+                choix.action();
+            }
+        } while (null == choix || choix.getType() != TypeEntreeMenu.QUIT);
     }
 
-    public void removeEntreeMenu(EntreeMenu entreeMenu) {
+
+    public void addEntreeMenu(int position, EntreeMenu entreeMenu) {
         if (null != entreeMenu) {
-            entreesMenu.remove(entreeMenu);
+            entreesMenuParPosition.put(position, entreeMenu);
         }
     }
 
@@ -39,8 +55,11 @@ public class Menu {
         sb.append(name).append('\n');
         sb.append("=".repeat(name.length())).append('\n');
 
-        for (EntreeMenu entree : entreesMenu) {
-            sb.append(entree).append('\n');
+        for (Map.Entry<Integer, EntreeMenu> entreeMenuEntry : entreesMenuParPosition.entrySet()) {
+            sb.append(entreeMenuEntry.getKey())
+                    .append(". ")
+                    .append(entreeMenuEntry.getValue())
+                    .append('\n');
         }
 
         return sb.toString();

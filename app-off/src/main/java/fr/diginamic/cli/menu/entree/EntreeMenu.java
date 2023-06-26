@@ -1,24 +1,23 @@
 package fr.diginamic.cli.menu.entree;
 
-public abstract class EntreeMenu implements Comparable<EntreeMenu>{
-    private final Integer position;
-
+public abstract class EntreeMenu{
     private final String libelle;
 
-    public EntreeMenu(Integer position, String libelle) {
-        this.position = position;
+    private final TypeEntreeMenu type;
+
+    public EntreeMenu(String libelle, TypeEntreeMenu type) {
         this.libelle = libelle;
+        this.type = type;
     }
 
     public abstract void action();
 
     @Override
-    public int compareTo(EntreeMenu other) {
-        return this.position.compareTo(other.position);
+    public String toString() {
+        return libelle;
     }
 
-    @Override
-    public String toString() {
-        return position + ". " + libelle;
+    public TypeEntreeMenu getType() {
+        return type;
     }
 }
