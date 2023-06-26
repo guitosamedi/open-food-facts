@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NIngredientsLesPlusCourantsEntreeMenu extends EntreeMenu {
-    private static final String LIBELLE = "Les ingrédients le plus courants";
+    private static final String LIBELLE = "Les ingrédients les plus courants";
 
     public NIngredientsLesPlusCourantsEntreeMenu() {
         super(LIBELLE, TypeEntreeMenu.ACTION);

@@ -12,6 +12,7 @@ public class OffCliApp {
         menu.addEntreeMenu(3, new NMeilleurProduitParMarqueEtParCategorieEntreeMenu());
         menu.addEntreeMenu(4, new NIngredientsLesPlusCourantsEntreeMenu());
         menu.addEntreeMenu(5, new NAllergenesLesPlusCourantsEntreeMenu());
+        menu.addEntreeMenu(6, new NAdditifsLesPlusCourantsEntreeMenu());
 
         menu.exec();
     }

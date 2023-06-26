@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NAllergenesLesPlusCourantsEntreeMenu extends EntreeMenu {
-    private static final String LIBELLE = "Les allergènes le plus courants";
+    private static final String LIBELLE = "Les allergènes les plus courants";
 
     public NAllergenesLesPlusCourantsEntreeMenu() {
         super(LIBELLE, TypeEntreeMenu.ACTION);
