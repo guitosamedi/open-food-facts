@@ -5,5 +5,5 @@ import fr.diginamic.entites.Ingredient;
 import java.util.List;
 
 public interface IngredientDao {
-    List<Ingredient> findAllOrderByCountProduit(int limit);
+    List<Ingredient> findAllIngredientsOrderByCountProduit(int limit);
 }

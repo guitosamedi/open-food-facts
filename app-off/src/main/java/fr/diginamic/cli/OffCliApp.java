@@ -10,7 +10,8 @@ public class OffCliApp {
         menu.addEntreeMenu(1, new NMeilleurProduitParMarqueEntreeMenu());
         menu.addEntreeMenu(2, new NMeilleurProduitParCategorieEntreeMenu());
         menu.addEntreeMenu(3, new NMeilleurProduitParMarqueEtParCategorieEntreeMenu());
-        menu.addEntreeMenu(4, new NIngredientLesPlusCourantsEntreeMenu());
+        menu.addEntreeMenu(4, new NIngredientsLesPlusCourantsEntreeMenu());
+        menu.addEntreeMenu(5, new NAllergenesLesPlusCourantsEntreeMenu());
 
         menu.exec();
     }

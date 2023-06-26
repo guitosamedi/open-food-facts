@@ -7,10 +7,10 @@ import fr.diginamic.entites.Ingredient;
 import java.util.List;
 import java.util.Scanner;
 
-public class NIngredientLesPlusCourantsEntreeMenu extends EntreeMenu {
-    private static final String LIBELLE = "Les ingrédients le plus courant";
+public class NIngredientsLesPlusCourantsEntreeMenu extends EntreeMenu {
+    private static final String LIBELLE = "Les ingrédients le plus courants";
 
-    public NIngredientLesPlusCourantsEntreeMenu() {
+    public NIngredientsLesPlusCourantsEntreeMenu() {
         super(LIBELLE, TypeEntreeMenu.ACTION);
     }
 
@@ -22,11 +22,11 @@ public class NIngredientLesPlusCourantsEntreeMenu extends EntreeMenu {
         int limit = scanner.nextInt();
 
         IngredientService ingredientService = IngredientService.getInstance();
-        List<Ingredient> ingredients = ingredientService.getIngredientLesPlusCourants(limit);
+        List<Ingredient> ingredients = ingredientService.getIngredientsLesPlusCourants(limit);
 
         if (null != ingredients) {
             for (Ingredient ingredient : ingredients) {
-                System.out.println("Les " + limit + " ingrédients les plus courant :");
+                System.out.println("Les " + limit + " ingrédients les plus courants :");
                 System.out.println(ingredient);
             }
         }

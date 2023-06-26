@@ -25,7 +25,7 @@ public class IngredientService {
     private IngredientService() {}
 
 
-    public List<Ingredient> getIngredientLesPlusCourants(int limit) {
-        return ingredientDao.findAllOrderByCountProduit(limit);
+    public List<Ingredient> getIngredientsLesPlusCourants(int limit) {
+        return ingredientDao.findAllIngredientsOrderByCountProduit(limit);
     }
 }
