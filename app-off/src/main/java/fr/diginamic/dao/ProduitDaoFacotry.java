@@ -1,5 +1,6 @@
 package fr.diginamic.dao;
 
+import fr.diginamic.entites.Categorie;
 import fr.diginamic.entites.Marque;
 import fr.diginamic.entites.Produit;
 
@@ -16,8 +17,16 @@ public class ProduitDaoFacotry {
                     System.out.println("Not implemented yet !");
                     return null;
                 }
+
+                @Override
+                public List<Produit> findAllProduitByCategorieOrderByScore(Categorie categorie, int limit) {
+                    System.out.println("Not implemented yet !");
+                    return null;
+                }
             };
         }
         return produitDao;
     }
+
+    private ProduitDaoFacotry() {}
 }

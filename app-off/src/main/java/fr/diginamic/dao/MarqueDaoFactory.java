@@ -9,7 +9,7 @@ public class MarqueDaoFactory {
         if (null == marqueDao) {
             marqueDao = new MarqueDao() {
                 @Override
-                public Marque findByName(String marqueName) {
+                public Marque findByNom(String marqueName) {
                     System.out.println("Not implemented yet !");
                     return null;
                 }
@@ -17,4 +17,6 @@ public class MarqueDaoFactory {
         }
         return marqueDao;
     }
+
+    private MarqueDaoFactory() {}
 }

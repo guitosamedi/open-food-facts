@@ -1,9 +1,7 @@
 package fr.diginamic.cli.services;
 
-import fr.diginamic.dao.MarqueDao;
-import fr.diginamic.dao.MarqueDaoFactory;
-import fr.diginamic.dao.ProduitDao;
-import fr.diginamic.dao.ProduitDaoFacotry;
+import fr.diginamic.dao.*;
+import fr.diginamic.entites.Categorie;
 import fr.diginamic.entites.Marque;
 import fr.diginamic.entites.Produit;
 
@@ -28,10 +26,17 @@ public class ProduitService {
     private ProduitService() {}
 
 
-    public List<Produit> getMeilleursProduitsParMarque(String marqueName, int limit) {
+    public List<Produit> getMeilleursProduitsParMarque(String nomMarque, int limit) {
         MarqueDao marqueDao = MarqueDaoFactory.getMarqueDao();
-        Marque marque = marqueDao.findByName(marqueName);
+        Marque marque = marqueDao.findByNom(nomMarque);
 
         return produitDao.findAllProduitByMarqueOrderByScore(marque, limit);
+    }
+
+    public List<Produit> getMeilleursProduitsParCategorie(String nomCategorie, int limit) {
+        CategorieDao categorieDao = CategorieDaoFactory.getCategorieDao();
+        Categorie categorie = categorieDao.findByNom(nomCategorie);
+
+        return produitDao.findAllProduitByCategorieOrderByScore(categorie, limit);
     }
 }

@@ -7,10 +7,10 @@ import fr.diginamic.entites.Produit;
 import java.util.List;
 import java.util.Scanner;
 
-public class NMeilleurProduitParMarqueEntreeMenu extends EntreeMenu {
-    private static final String LIBELLE = "Les meilleurs produits d'une marque";
+public class NMeilleurProduitParCategorieEntreeMenu extends EntreeMenu {
+    private static final String LIBELLE = "Les meilleurs produits pour une catégorie";
 
-    public NMeilleurProduitParMarqueEntreeMenu() {
+    public NMeilleurProduitParCategorieEntreeMenu() {
         super(LIBELLE, TypeEntreeMenu.ACTION);
     }
 
@@ -18,17 +18,17 @@ public class NMeilleurProduitParMarqueEntreeMenu extends EntreeMenu {
     public void action() {
         Scanner scanner = ScannerProvider.getScanner();
 
-        System.out.println("Choix de la maque :");
-        String categorie = scanner.next();
+        System.out.println("Choix de la catégorie :");
+        String marque = scanner.next();
 
         System.out.println("Combien de produits souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
 
         ProduitService produitService = ProduitService.getInstance();
-        List<Produit> produits = produitService.getMeilleursProduitsParCategorie(categorie, limit);
+        List<Produit> produits = produitService.getMeilleursProduitsParMarque(marque, limit);
 
         if (null != produits) {
-            System.out.println("Les " + limit + " meilleurs produits de la catégorie " + categorie + " :");
+            System.out.println("Les " + limit + " meilleurs produits de la marque " + marque + " :");
             for (Produit produit : produits) {
                 System.out.println(produit);
             }
