@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "produit") // On avait oublié cette annotation c'est pourquoi j'avais une erreur dans mes requêtes sql de ma Classe ProduitDAO
 public class Produit {
 
     @Id

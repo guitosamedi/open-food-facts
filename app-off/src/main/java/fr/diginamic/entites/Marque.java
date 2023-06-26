@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "marque")
 public class Marque {
     @Id
     @GeneratedValue
