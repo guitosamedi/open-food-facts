@@ -23,6 +23,12 @@ public class ProduitDaoFacotry {
                     System.out.println("Not implemented yet !");
                     return null;
                 }
+
+                @Override
+                public List<Produit> findAllProduitByMarqueAndCategorieOrderByScore(Marque marque, Categorie categorie, int limit) {
+                    System.out.println("Not implemented yet !");
+                    return null;
+                }
             };
         }
         return produitDao;

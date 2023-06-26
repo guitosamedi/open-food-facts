@@ -10,4 +10,6 @@ public interface ProduitDao {
     List<Produit> findAllProduitByMarqueOrderByScore(Marque marque, int limit);
 
     List<Produit> findAllProduitByCategorieOrderByScore(Categorie categorie, int limit);
+
+    List<Produit> findAllProduitByMarqueAndCategorieOrderByScore(Marque marque, Categorie categorie, int limit);
 }

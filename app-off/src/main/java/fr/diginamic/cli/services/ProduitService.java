@@ -39,4 +39,14 @@ public class ProduitService {
 
         return produitDao.findAllProduitByCategorieOrderByScore(categorie, limit);
     }
+
+    public List<Produit> getMeilleursProduitsParMarqueEtParCategorie(String nomMarque, String nomCategorie, int limit) {
+        MarqueDao marqueDao = MarqueDaoFactory.getMarqueDao();
+        Marque marque = marqueDao.findByNom(nomMarque);
+
+        CategorieDao categorieDao = CategorieDaoFactory.getCategorieDao();
+        Categorie categorie = categorieDao.findByNom(nomCategorie);
+
+        return produitDao.findAllProduitByMarqueAndCategorieOrderByScore(marque, categorie, limit);
+    }
 }

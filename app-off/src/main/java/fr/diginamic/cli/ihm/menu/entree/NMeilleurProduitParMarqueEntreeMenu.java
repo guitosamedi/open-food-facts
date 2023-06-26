@@ -19,16 +19,16 @@ public class NMeilleurProduitParMarqueEntreeMenu extends EntreeMenu {
         Scanner scanner = ScannerProvider.getScanner();
 
         System.out.println("Choix de la maque :");
-        String categorie = scanner.next();
+        String marque = scanner.next();
 
         System.out.println("Combien de produits souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
 
         ProduitService produitService = ProduitService.getInstance();
-        List<Produit> produits = produitService.getMeilleursProduitsParCategorie(categorie, limit);
+        List<Produit> produits = produitService.getMeilleursProduitsParMarque(marque, limit);
 
         if (null != produits) {
-            System.out.println("Les " + limit + " meilleurs produits de la catégorie " + categorie + " :");
+            System.out.println("Les " + limit + " meilleurs produits de la marque " + marque + " :");
             for (Produit produit : produits) {
                 System.out.println(produit);
             }
