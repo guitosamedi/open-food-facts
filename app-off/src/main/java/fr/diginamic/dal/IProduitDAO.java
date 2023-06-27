@@ -1,19 +1,36 @@
 package fr.diginamic.dal;
-
 import fr.diginamic.entites.Produit;
-
 import java.util.List;
 
 public interface IProduitDAO {
 
-    List<Produit> findAll();
+    /**
+     * @return
+     */
+    List<Produit> findAllProduit();
 
-    Produit findById(int id);
+    /**
+     * @param id
+     * @return
+     */
+    Produit findProduitById(int id);
 
-    void create(Produit produit);
+    /**
+     * @param produit
+     */
+    void createProduit(Produit produit);
 
-    int update(Produit produit, int id);
-    // pourquoi pas void update(Produit produit); ?
+    /**
+     * @param produit
+     * @param id
+     * @return
+     */
+    int updateProduit(Produit produit, int id);
 
-    boolean delete(Produit produit, int id);
+    /**
+     * @param produit
+     * @param id
+     * @return
+     */
+    boolean deleteProduit(Produit produit, int id);
 }

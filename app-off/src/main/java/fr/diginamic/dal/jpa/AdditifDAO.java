@@ -1,5 +1,6 @@
 package fr.diginamic.dal.jpa;
-import fr.diginamic.dal.IMarqueDAO;
+import fr.diginamic.dal.IAdditifDAO;
+import fr.diginamic.entites.Additif;
 import fr.diginamic.entites.Marque;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -7,24 +8,23 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+public class AdditifDAO implements IAdditifDAO {
+    private static final String GET_ALL_REQ = "SELECT ad FROM Additif ad";
 
-public class MarqueDAO implements IMarqueDAO {
-    private static final String GET_ALL_REQ = "SELECT m FROM Marque m";
-
-    public MarqueDAO() {
+    public AdditifDAO() {
     }
 
     /**
      * @return
      */
     @Override
-    public List<Marque> findAllMarque() {
+    public List<Additif> findAllAdditif() {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
-            TypedQuery<Marque> m = em.createQuery(GET_ALL_REQ, Marque.class);
-            return m.getResultList();
+            TypedQuery<Additif> ad = em.createQuery(GET_ALL_REQ, Additif.class);
+            return ad.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la récupération des marques", e);
+            throw new RuntimeException("Erreur lors de la récupération des additifs", e);
         }
     }
 
@@ -33,68 +33,68 @@ public class MarqueDAO implements IMarqueDAO {
      * @return
      */
     @Override
-    public Marque findMarqueById(int id) {
+    public Additif findAdditifById(int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
-            return em.find(Marque.class, id);
+            return em.find(Additif.class, id);
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la récupération de la marque", e);
+            throw new RuntimeException("Erreur lors de la récupération de l'additif", e);
         }
     }
 
     /**
-     * @param marque
+     * @param additif
      */
     @Override
-    public void createMarque(Marque marque) {
+    public void createAdditif(Additif additif) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.persist(marque);
+            em.persist(additif);
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la création de la marque", e);
+            throw new RuntimeException("Erreur lors de la création de l'additif'", e);
         }
     }
 
     /**
-     * @param marque
+     * @param additif
      * @param id
      * @return
      */
     @Override
-    public int updateMarque(Marque marque, int id) {
+    public int updateAdditif(Additif additif, int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Marque m = em.find(Marque.class, marque.getId());
-            if (m != null) {
-                em.merge(m);
+            Additif ad = em.find(Additif.class, additif.getId());
+            if (ad != null) {
+                em.merge(ad);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la modification de la marque", e);
+            throw new RuntimeException("Erreur lors de la modification de l'additif'", e);
         }
         return 0;
     }
 
     /**
-     * @param marque
+     * @param additif
      * @param id
      * @return
      */
     @Override
-    public boolean deleteMarque(Marque marque, int id) {
+    public boolean deleteAdditif(Additif additif, int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Marque m = em.find(Marque.class, marque.getId());
-            if (m != null) {
-                em.remove(m);
+            Additif ad = em.find(Additif.class, additif.getId());
+            if (ad != null) {
+                em.remove(ad);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la suppression de la marque", e);
+            throw new RuntimeException("Erreur lors de la suppression de l'additif'", e);
         }
         return false;
     }

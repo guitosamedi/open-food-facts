@@ -55,6 +55,13 @@ public class Produit {
 
     public Produit(){};
 
+    /**
+     * @param id
+     * @param nom
+     * @param graisse
+     * @param energie
+     * @param score
+     */
     public Produit(int id, String nom, int graisse, int energie, ProduitScore score) {
         this.id = id;
         this.nom = nom;
@@ -63,49 +70,86 @@ public class Produit {
         this.score = score;
     }
 
+    /**
+     * @return
+     */
     public int getId() {
         return id;
     }
+
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * @return
+     */
     public int getGraisse() {
         return graisse;
     }
 
+    /**
+     * @param graisse
+     */
     public void setGraisse(int graisse) {
         this.graisse = graisse;
     }
 
+    /**
+     * @return
+     */
     public int getEnergie() {
         return energie;
     }
 
+    /**
+     * @param energie
+     */
     public void setEnergie(int energie) {
         this.energie = energie;
     }
 
+    /**
+     * @return
+     */
     public ProduitScore getScore() {
         return score;
     }
 
+    /**
+     * @param score
+     */
     public void setScore(ProduitScore score) {
         this.score = score;
     }
 
+    /**
+     * @return
+     */
     public Marque getMarque() {
         return marque;
     }
 
+    /**
+     * @param marque
+     */
     public void setMarque(Marque marque) {
         if(null != this.marque){
             this.marque.getProduits().remove(this);
@@ -117,10 +161,16 @@ public class Produit {
         this.marque = marque;
     }
 
+    /**
+     * @return
+     */
     public Categorie getCategorie() {
         return categorie;
     }
 
+    /**
+     * @param categorie
+     */
     public void setCategorie(Categorie categorie) {
         if(null != this.categorie){
             this.categorie.getProduits().remove(this);
@@ -131,14 +181,23 @@ public class Produit {
         this.categorie = categorie;
     }
 
+    /**
+     * @return
+     */
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
+    /**
+     * @param ingredients
+     */
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
+    /**
+     * @param ingredient
+     */
     public void addIngredient(Ingredient ingredient){
         if (null != ingredient) {
             this.ingredients.add(ingredient);
@@ -147,6 +206,9 @@ public class Produit {
 
     }
 
+    /**
+     * @param ingredient
+     */
     public void removeIngredient(Ingredient ingredient){
         if (null != ingredient) {
             this.ingredients.remove(ingredient);
@@ -154,14 +216,23 @@ public class Produit {
         }
     }
 
+    /**
+     * @return
+     */
     public Set<Allergene> getAllergenes() {
         return allergenes;
     }
 
+    /**
+     * @param allergenes
+     */
     public void setAllergenes(Set<Allergene> allergenes) {
         this.allergenes = allergenes;
     }
 
+    /**
+     * @param allergene
+     */
     public void addAllergene(Allergene allergene){
         if (null != allergene) {
             this.allergenes.add(allergene);
@@ -169,6 +240,9 @@ public class Produit {
         }
     }
 
+    /**
+     * @param allergene
+     */
     public void removeAllergene(Allergene allergene){
         if (null != allergene) {
             this.allergenes.remove(allergene);
@@ -176,14 +250,23 @@ public class Produit {
         }
     }
 
+    /**
+     * @return
+     */
     public Set<Additif> getAdditifs() {
         return additifs;
     }
 
+    /**
+     * @param additifs
+     */
     public void setAdditifs(Set<Additif> additifs) {
         this.additifs = additifs;
     }
 
+    /**
+     * @param additif
+     */
     public void addAdditif(Additif additif){
         if (null != additif) {
             this.additifs.add(additif);
@@ -191,6 +274,9 @@ public class Produit {
         }
     }
 
+    /**
+     * @param additif
+     */
     public void removeAdditif(Additif additif){
         if (null != additif) {
             this.additifs.remove(additif);

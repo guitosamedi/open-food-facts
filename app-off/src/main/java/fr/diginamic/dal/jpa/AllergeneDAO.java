@@ -1,30 +1,32 @@
 package fr.diginamic.dal.jpa;
-import fr.diginamic.dal.IMarqueDAO;
-import fr.diginamic.entites.Marque;
+import fr.diginamic.dal.IAllergeneDAO;
+import fr.diginamic.entites.Allergene;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
-
 import java.util.List;
 
+public class AllergeneDAO implements IAllergeneDAO {
 
-public class MarqueDAO implements IMarqueDAO {
-    private static final String GET_ALL_REQ = "SELECT m FROM Marque m";
+    /**
+     *
+     */
+    private static final String GET_ALL_REQ = "SELECT al FROM Allergene al";
 
-    public MarqueDAO() {
+    public AllergeneDAO() {
     }
 
     /**
      * @return
      */
     @Override
-    public List<Marque> findAllMarque() {
+    public List<Allergene> findAllAllergene() {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
-            TypedQuery<Marque> m = em.createQuery(GET_ALL_REQ, Marque.class);
-            return m.getResultList();
+            TypedQuery<Allergene> al = em.createQuery(GET_ALL_REQ, Allergene.class);
+            return al.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la récupération des marques", e);
+            throw new RuntimeException("Erreur lors de la récupération des allergènes", e);
         }
     }
 
@@ -33,68 +35,68 @@ public class MarqueDAO implements IMarqueDAO {
      * @return
      */
     @Override
-    public Marque findMarqueById(int id) {
+    public Allergene findAllergeneById(int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
-            return em.find(Marque.class, id);
+            return em.find(Allergene.class, id);
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la récupération de la marque", e);
+            throw new RuntimeException("Erreur lors de la récupération de l'allergène'", e);
         }
     }
 
     /**
-     * @param marque
+     * @param allerge
      */
     @Override
-    public void createMarque(Marque marque) {
+    public void createAllergene(Allergene allerge) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.persist(marque);
+            em.persist(allerge);
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la création de la marque", e);
+            throw new RuntimeException("Erreur lors de la création de l'allergène'", e);
         }
     }
 
     /**
-     * @param marque
+     * @param allerge
      * @param id
      * @return
      */
     @Override
-    public int updateMarque(Marque marque, int id) {
+    public int updateAllergene(Allergene allerge, int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Marque m = em.find(Marque.class, marque.getId());
-            if (m != null) {
-                em.merge(m);
+            Allergene al = em.find(Allergene.class, allerge.getId());
+            if (al != null) {
+                em.merge(al);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la modification de la marque", e);
+            throw new RuntimeException("Erreur lors de la modification de l'allergène'", e);
         }
         return 0;
     }
 
     /**
-     * @param marque
+     * @param allerge
      * @param id
      * @return
      */
     @Override
-    public boolean deleteMarque(Marque marque, int id) {
+    public boolean deleteAllergene(Allergene allerge, int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Marque m = em.find(Marque.class, marque.getId());
-            if (m != null) {
-                em.remove(m);
+            Allergene al = em.find(Allergene.class, allerge.getId());
+            if (al != null) {
+                em.remove(al);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la suppression de la marque", e);
+            throw new RuntimeException("Erreur lors de la suppression de l'allergène'", e);
         }
         return false;
     }

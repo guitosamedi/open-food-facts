@@ -1,5 +1,7 @@
 package fr.diginamic.dal.jpa;
-import fr.diginamic.dal.IMarqueDAO;
+
+import fr.diginamic.dal.IIngredientDAO;
+import fr.diginamic.entites.Ingredient;
 import fr.diginamic.entites.Marque;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -7,24 +9,24 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+public class IngredientDAO implements IIngredientDAO {
 
-public class MarqueDAO implements IMarqueDAO {
-    private static final String GET_ALL_REQ = "SELECT m FROM Marque m";
+    private static final String GET_ALL_REQ = "SELECT i FROM Ingredient i";
 
-    public MarqueDAO() {
+    public IngredientDAO() {
     }
 
     /**
      * @return
      */
     @Override
-    public List<Marque> findAllMarque() {
+    public List<Ingredient> findAllIngredient() {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
-            TypedQuery<Marque> m = em.createQuery(GET_ALL_REQ, Marque.class);
-            return m.getResultList();
+            TypedQuery<Ingredient> i = em.createQuery(GET_ALL_REQ, Ingredient.class);
+            return i.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la récupération des marques", e);
+            throw new RuntimeException("Erreur lors de la récupération des ingrédients", e);
         }
     }
 
@@ -33,68 +35,68 @@ public class MarqueDAO implements IMarqueDAO {
      * @return
      */
     @Override
-    public Marque findMarqueById(int id) {
+    public Ingredient findIngredientById(int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
-            return em.find(Marque.class, id);
+            return em.find(Ingredient.class, id);
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la récupération de la marque", e);
+            throw new RuntimeException("Erreur lors de la récupération de l'ingrédient'", e);
         }
     }
 
     /**
-     * @param marque
+     * @param ingredient
      */
     @Override
-    public void createMarque(Marque marque) {
+    public void createIngredient(Ingredient ingredient) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.persist(marque);
+            em.persist(ingredient);
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la création de la marque", e);
+            throw new RuntimeException("Erreur lors de la création de l'ingrédient'", e);
         }
     }
 
     /**
-     * @param marque
+     * @param ingredient
      * @param id
      * @return
      */
     @Override
-    public int updateMarque(Marque marque, int id) {
+    public int updateIngredient(Ingredient ingredient, int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Marque m = em.find(Marque.class, marque.getId());
-            if (m != null) {
-                em.merge(m);
+            Ingredient i = em.find(Ingredient.class, ingredient.getId());
+            if (i != null) {
+                em.merge(i);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la modification de la marque", e);
+            throw new RuntimeException("Erreur lors de la modification de l'ingrédient'", e);
         }
         return 0;
     }
 
     /**
-     * @param marque
+     * @param ingredient
      * @param id
      * @return
      */
     @Override
-    public boolean deleteMarque(Marque marque, int id) {
+    public boolean deleteIngredient(Ingredient ingredient, int id) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Marque m = em.find(Marque.class, marque.getId());
-            if (m != null) {
-                em.remove(m);
+            Ingredient i = em.find(Ingredient.class, ingredient.getId());
+            if (i != null) {
+                em.remove(i);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la suppression de la marque", e);
+            throw new RuntimeException("Erreur lors de la suppression de l'ingrédient'", e);
         }
         return false;
     }
