@@ -30,4 +30,6 @@ public interface ICategorieDAO {
      * @return
      */
     boolean deleteCategorie(Categorie categorie);
+
+    Categorie findByNom(String nomCategorie);
 }

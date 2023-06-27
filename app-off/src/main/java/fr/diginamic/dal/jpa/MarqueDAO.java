@@ -9,6 +9,7 @@ import java.util.List;
 
 public class MarqueDAO implements IMarqueDAO {
     private static final String GET_ALL_REQ = "SELECT m FROM Marque m";
+    private static final String FIND_BY_NOM_REQ = "SELECT m FROM Marque m WHERE m.nom = :nom";
 
     public MarqueDAO() {
     }
@@ -94,5 +95,17 @@ public class MarqueDAO implements IMarqueDAO {
             throw new RuntimeException("Erreur lors de la suppression de la marque", e);
         }
         return false;
+    }
+
+    @Override
+    public Marque findByNom(String nomMarque) {
+        EntityManagerFactory emf = EMFProvider.getEmf();
+        try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Marque> m = em.createQuery(FIND_BY_NOM_REQ, Marque.class);
+            m.setParameter("nom", nomMarque);
+            return m.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des marques", e);
+        }
     }
 }

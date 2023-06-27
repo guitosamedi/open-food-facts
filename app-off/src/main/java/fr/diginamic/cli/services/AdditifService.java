@@ -1,7 +1,6 @@
 package fr.diginamic.cli.services;
 
 import fr.diginamic.dao.AdditifDao;
-import fr.diginamic.dao.jpa.AdditifDaoJPA;
 import fr.diginamic.entites.Additif;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class AdditifService {
     private final AdditifDao additifDao;
 
     {
-        additifDao = new AdditifDaoJPA();
+        additifDao = null;
     }
 
     private AdditifService() {}

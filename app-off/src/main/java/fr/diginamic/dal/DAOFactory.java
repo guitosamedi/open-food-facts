@@ -1,5 +1,7 @@
 package fr.diginamic.dal;
 
+import fr.diginamic.dao.CategorieDao;
+
 import java.util.ResourceBundle;
 
 public final class DAOFactory {
@@ -43,4 +45,14 @@ public final class DAOFactory {
         return dao;
     }
 
+    public static ICategorieDAO getCategorieDAO() {
+        ICategorieDAO dao =null;
+        switch (MODE_COURANT) {
+            case MODE_JPA -> dao = new fr.diginamic.dal.jpa.CategorieDAO();
+            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.MarqueDAO();
+            // case MODE_XML -> dao = new fr.diginamic.dal.xml.MarqueDAO();
+            default -> throw new RuntimeException("Mode non implémenté !!!");
+        }
+        return dao;
+    }
 }
