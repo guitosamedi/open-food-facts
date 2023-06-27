@@ -82,7 +82,7 @@ public class CategorieDAO implements ICategorieDAO {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la modification de la marque", e);
+            throw new RuntimeException("Erreur lors de la modification de la catégorie", e);
         }
         return 0;
     }
