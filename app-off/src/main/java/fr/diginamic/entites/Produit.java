@@ -1,6 +1,7 @@
 package fr.diginamic.entites;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,9 +14,9 @@ public class Produit {
     @Column(length = 100)
     private String nom;
 
-    private int graisse;
+    private double graisse;
 
-    private int energie;
+    private double energie;
 
     @Enumerated(value= EnumType.STRING)
     private ProduitScore score;
@@ -52,9 +53,22 @@ public class Produit {
     )
     private Set<Additif> additifs;
 
+    {
+        ingredients = new HashSet<>();
+        allergenes = new HashSet<>();
+        additifs = new HashSet<>();
+    }
+
     public Produit(){};
 
-    public Produit(int id, String nom, int graisse, int energie, ProduitScore score) {
+    public Produit(String nom, double graisse, double energie, ProduitScore score) {
+        this.nom = nom;
+        this.graisse = graisse;
+        this.energie = energie;
+        this.score = score;
+    }
+
+    public Produit(int id, String nom, double graisse, double energie, ProduitScore score) {
         this.id = id;
         this.nom = nom;
         this.graisse = graisse;
@@ -77,19 +91,19 @@ public class Produit {
         this.nom = nom;
     }
 
-    public int getGraisse() {
+    public double getGraisse() {
         return graisse;
     }
 
-    public void setGraisse(int graisse) {
+    public void setGraisse(double graisse) {
         this.graisse = graisse;
     }
 
-    public int getEnergie() {
+    public double getEnergie() {
         return energie;
     }
 
-    public void setEnergie(int energie) {
+    public void setEnergie(double energie) {
         this.energie = energie;
     }
 

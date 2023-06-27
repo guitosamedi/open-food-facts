@@ -19,6 +19,10 @@ public class Allergene {
 
     public Allergene() {}
 
+    public Allergene(String nom) {
+        this.nom = nom;
+    }
+
     public Allergene(int id, String nom) {
         this.id = id;
         this.nom = nom;

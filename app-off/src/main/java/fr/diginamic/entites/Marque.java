@@ -19,6 +19,10 @@ public class Marque {
 
     public Marque() {}
 
+    public Marque(String nom) {
+        this.nom = nom;
+    }
+
     public Marque(int id, String nom) {
         this.id = id;
         this.nom = nom;

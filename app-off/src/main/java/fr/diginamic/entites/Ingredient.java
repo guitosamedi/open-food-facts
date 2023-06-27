@@ -19,6 +19,10 @@ public class Ingredient {
 
     public Ingredient() {}
 
+    public Ingredient(String nom) {
+        this.nom = nom;
+    }
+
     public Ingredient(int id, String nom) {
         this.id = id;
         this.nom = nom;

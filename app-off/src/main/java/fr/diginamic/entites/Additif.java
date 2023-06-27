@@ -19,6 +19,10 @@ public class Additif {
 
     public Additif() {}
 
+    public Additif(String nom) {
+        this.nom = nom;
+    }
+
     public Additif(int id, String nom) {
         this.id = id;
         this.nom = nom;
