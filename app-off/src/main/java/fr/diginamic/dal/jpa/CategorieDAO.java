@@ -59,7 +59,20 @@ public class CategorieDAO implements ICategorieDAO {
      * @return
      */
     @Override
-    public int updateCategorie(Categorie categorie, int id) {
+    public int updateCategorie(Categorie categorie) {
+        EntityManagerFactory emf = EMFProvider.getEmf();
+        try(EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            Categorie c = em.find(Categorie.class, categorie.getId());
+            if (c != null) {
+                em.merge(c);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la modification de la marque", e);
+        }
+        return 0;
+    }
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
