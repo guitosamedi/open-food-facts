@@ -93,7 +93,7 @@ public class CategorieDAO implements ICategorieDAO {
      * @return
      */
     @Override
-    public boolean deleteCategorie(Categorie categorie, int id) {
+    public boolean deleteCategorie(Categorie categorie) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
