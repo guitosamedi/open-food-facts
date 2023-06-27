@@ -24,12 +24,12 @@ public interface IAllergeneDAO {
      * @param id
      * @return
      */
-    int updateAllergene(Allergene allerge, int id);
+    int updateAllergene(Allergene allerge);
 
     /**
      * @param allerge
      * @param id
      * @return
      */
-    boolean deleteAllergene(Allergene allerge, int id);
+    boolean deleteAllergene(Allergene allerge);
 }

@@ -22,15 +22,13 @@ public interface IProduitDAO {
 
     /**
      * @param produit
-     * @param id
      * @return
      */
-    int updateProduit(Produit produit, int id);
+    int updateProduit(Produit produit);
 
     /**
      * @param produit
-     * @param id
      * @return
      */
-    boolean deleteProduit(Produit produit, int id);
+    boolean deleteProduit(Produit produit);
 }

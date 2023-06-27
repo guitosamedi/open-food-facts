@@ -21,14 +21,12 @@ public interface ICategorieDAO {
 
     /**
      * @param categorie
-     * @param id
      * @return
      */
-    int updateCategorie(Categorie categorie, int id);
+    int updateCategorie(Categorie categorie);
 
     /**
      * @param categorie
-     * @param id
      * @return
      */
     boolean deleteCategorie(Categorie categorie);

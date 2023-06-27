@@ -21,15 +21,13 @@ public interface IAdditifDAO {
 
     /**
      * @param additif
-     * @param id
      * @return
      */
-    int updateAdditif(Additif additif, int id);
+    int updateAdditif(Additif additif);
 
     /**
      * @param additif
-     * @param id
      * @return
      */
-    boolean deleteAdditif(Additif additif, int id);
+    boolean deleteAdditif(Additif additif);
 }

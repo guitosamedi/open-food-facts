@@ -65,7 +65,7 @@ public class Additif {
     }
 
     /**
-     * @param produits 
+     * @param produits
      */
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;

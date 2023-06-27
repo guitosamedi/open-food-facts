@@ -21,15 +21,13 @@ public interface IMarqueDAO {
 
     /**
      * @param marque
-     * @param id
      * @return
      */
-    int updateMarque(Marque marque, int id);
+    int updateMarque(Marque marque);
 
     /**
      * @param marque
-     * @param id
      * @return
      */
-    boolean deleteMarque(Marque marque, int id);
+    boolean deleteMarque(Marque marque);
 }

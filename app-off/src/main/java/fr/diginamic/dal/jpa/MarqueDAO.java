@@ -4,7 +4,6 @@ import fr.diginamic.entites.Marque;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
-
 import java.util.List;
 
 
@@ -59,11 +58,10 @@ public class MarqueDAO implements IMarqueDAO {
 
     /**
      * @param marque
-     * @param id
      * @return
      */
     @Override
-    public int updateMarque(Marque marque, int id) {
+    public int updateMarque(Marque marque) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
@@ -80,11 +78,10 @@ public class MarqueDAO implements IMarqueDAO {
 
     /**
      * @param marque
-     * @param id
      * @return
      */
     @Override
-    public boolean deleteMarque(Marque marque, int id) {
+    public boolean deleteMarque(Marque marque) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();

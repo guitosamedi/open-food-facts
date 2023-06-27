@@ -21,15 +21,13 @@ public interface IIngredientDAO {
 
     /**
      * @param ingredient
-     * @param id
      * @return
      */
-    int updateIngredient(Ingredient ingredient, int id);
+    int updateIngredient(Ingredient ingredient);
 
     /**
      * @param ingredient
-     * @param id
      * @return
      */
-    boolean deleteIngredient(Ingredient ingredient, int id);
+    boolean deleteIngredient(Ingredient ingredient);
 }

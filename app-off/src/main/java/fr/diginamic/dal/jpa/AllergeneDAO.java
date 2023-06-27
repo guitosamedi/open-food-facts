@@ -61,11 +61,10 @@ public class AllergeneDAO implements IAllergeneDAO {
 
     /**
      * @param allerge
-     * @param id
      * @return
      */
     @Override
-    public int updateAllergene(Allergene allerge, int id) {
+    public int updateAllergene(Allergene allerge) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
@@ -82,11 +81,10 @@ public class AllergeneDAO implements IAllergeneDAO {
 
     /**
      * @param allerge
-     * @param id
      * @return
      */
     @Override
-    public boolean deleteAllergene(Allergene allerge, int id) {
+    public boolean deleteAllergene(Allergene allerge) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();

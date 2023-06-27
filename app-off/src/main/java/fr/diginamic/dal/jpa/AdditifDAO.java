@@ -1,7 +1,6 @@
 package fr.diginamic.dal.jpa;
 import fr.diginamic.dal.IAdditifDAO;
 import fr.diginamic.entites.Additif;
-import fr.diginamic.entites.Marque;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
@@ -59,11 +58,10 @@ public class AdditifDAO implements IAdditifDAO {
 
     /**
      * @param additif
-     * @param id
      * @return
      */
     @Override
-    public int updateAdditif(Additif additif, int id) {
+    public int updateAdditif(Additif additif) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
@@ -80,11 +78,10 @@ public class AdditifDAO implements IAdditifDAO {
 
     /**
      * @param additif
-     * @param id
      * @return
      */
     @Override
-    public boolean deleteAdditif(Additif additif, int id) {
+    public boolean deleteAdditif(Additif additif) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();

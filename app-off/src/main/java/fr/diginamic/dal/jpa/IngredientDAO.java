@@ -1,8 +1,6 @@
 package fr.diginamic.dal.jpa;
-
 import fr.diginamic.dal.IIngredientDAO;
 import fr.diginamic.entites.Ingredient;
-import fr.diginamic.entites.Marque;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
@@ -61,11 +59,10 @@ public class IngredientDAO implements IIngredientDAO {
 
     /**
      * @param ingredient
-     * @param id
      * @return
      */
     @Override
-    public int updateIngredient(Ingredient ingredient, int id) {
+    public int updateIngredient(Ingredient ingredient) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
@@ -82,11 +79,10 @@ public class IngredientDAO implements IIngredientDAO {
 
     /**
      * @param ingredient
-     * @param id
      * @return
      */
     @Override
-    public boolean deleteIngredient(Ingredient ingredient, int id) {
+    public boolean deleteIngredient(Ingredient ingredient) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();

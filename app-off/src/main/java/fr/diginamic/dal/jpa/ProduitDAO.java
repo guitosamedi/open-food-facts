@@ -62,11 +62,10 @@ public class ProduitDAO implements IProduitDAO {
 
     /**
      * @param produit
-     * @param id
      * @return
      */
     @Override
-    public int updateProduit(Produit produit, int id) { // doit-on mettre int id dans les paramètres de la méthode ?
+    public int updateProduit(Produit produit) { // doit-on mettre int id dans les paramètres de la méthode ?
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
@@ -83,11 +82,10 @@ public class ProduitDAO implements IProduitDAO {
 
     /**
      * @param produit
-     * @param id
      * @return
      */
     @Override
-    public boolean deleteProduit(Produit produit, int id) {
+    public boolean deleteProduit(Produit produit) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
