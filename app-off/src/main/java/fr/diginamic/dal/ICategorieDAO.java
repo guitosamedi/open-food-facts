@@ -31,5 +31,5 @@ public interface ICategorieDAO {
      * @param id
      * @return
      */
-    boolean deleteCategorie(Categorie categorie, int id);
+    boolean deleteCategorie(Categorie categorie);
 }
