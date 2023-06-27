@@ -11,7 +11,7 @@ public class IngredientDaoFactory {
         if (null == ingredientDao) {
             ingredientDao = new IngredientDao() {
                 @Override
-                public List<Ingredient> findAllIngredientsOrderByCountProduit(int limit) {
+                public List<Ingredient> findAllIngredientsCountProduitGroupByProduit(int limit) {
                     System.out.println("Not implemented yet !");
                     return null;
                 }

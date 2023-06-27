@@ -5,5 +5,5 @@ import fr.diginamic.entites.Additif;
 import java.util.List;
 
 public interface AdditifDao {
-    List<Additif> findAllAdditifsOrderByCountProduit(int limit);
+    List<Additif> findAllAdditifsCountProduitGroupByProduit(int limit);
 }

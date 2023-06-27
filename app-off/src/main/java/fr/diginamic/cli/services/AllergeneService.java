@@ -39,6 +39,6 @@ public class AllergeneService {
      * @return une liste d'objets Allergene représentant les allergènes les plus courants
      */
     public List<Allergene> getAllergenesLesPlusCourants(int limit) {
-        return allergeneDao.findAllAllergenesOrderByCountProduit(limit);
+        return allergeneDao.findAllAllergenesCountProduitGroupByProduit(limit);
     }
 }

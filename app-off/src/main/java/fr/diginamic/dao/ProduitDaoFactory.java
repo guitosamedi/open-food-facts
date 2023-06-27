@@ -6,7 +6,7 @@ import fr.diginamic.entites.Produit;
 
 import java.util.List;
 
-public class ProduitDaoFacotry {
+public class ProduitDaoFactory {
     private static ProduitDao produitDao;
 
     public static ProduitDao getProduitDao() {
@@ -34,5 +34,5 @@ public class ProduitDaoFacotry {
         return produitDao;
     }
 
-    private ProduitDaoFacotry() {}
+    private ProduitDaoFactory() {}
 }

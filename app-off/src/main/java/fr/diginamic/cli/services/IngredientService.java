@@ -39,6 +39,6 @@ public class IngredientService {
      * @return une liste d'objets Ingredient représentant les ingrédients les plus courants
      */
     public List<Ingredient> getIngredientsLesPlusCourants(int limit) {
-        return ingredientDao.findAllIngredientsOrderByCountProduit(limit);
+        return ingredientDao.findAllIngredientsCountProduitGroupByProduit(limit);
     }
 }

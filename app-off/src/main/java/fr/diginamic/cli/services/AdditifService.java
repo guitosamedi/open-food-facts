@@ -1,7 +1,7 @@
 package fr.diginamic.cli.services;
 
 import fr.diginamic.dao.AdditifDao;
-import fr.diginamic.dao.AdditifDaoFactory;
+import fr.diginamic.dao.jpa.AdditifDaoJPA;
 import fr.diginamic.entites.Additif;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class AdditifService {
     private final AdditifDao additifDao;
 
     {
-        additifDao = AdditifDaoFactory.getAdditifDao();
+        additifDao = new AdditifDaoJPA();
     }
 
     private AdditifService() {}
@@ -39,6 +39,6 @@ public class AdditifService {
      * @return une liste d'objets Additif représentant les additifs les plus courants
      */
     public List<Additif> getAdditifsLesPlusCourants(int limit) {
-        return additifDao.findAllAdditifsOrderByCountProduit(limit);
+        return additifDao.findAllAdditifsCountProduitGroupByProduit(limit);
     }
 }

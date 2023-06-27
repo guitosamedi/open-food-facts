@@ -28,7 +28,7 @@ public class ProduitService {
     private final ProduitDao produitDao;
 
     {
-        produitDao = ProduitDaoFacotry.getProduitDao();
+        produitDao = ProduitDaoFactory.getProduitDao();
     }
 
     private ProduitService() {}

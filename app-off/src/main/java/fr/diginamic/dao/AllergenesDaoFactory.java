@@ -12,7 +12,7 @@ public class AllergenesDaoFactory {
         if (null == allergeneDao) {
             allergeneDao = new AllergeneDao() {
                 @Override
-                public List<Allergene> findAllAllergenesOrderByCountProduit(int limit) {
+                public List<Allergene> findAllAllergenesCountProduitGroupByProduit(int limit) {
                     System.out.println("Not implemented yet !");
                     return null;
                 }
