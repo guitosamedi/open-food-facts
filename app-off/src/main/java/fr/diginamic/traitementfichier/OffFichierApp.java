@@ -21,39 +21,29 @@ public class OffFichierApp {
               Scanner scanner = new Scanner(fileInputStream)) {
             scanner.nextLine();
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+                String[] columns = scanner.nextLine().split("\\|", 31);
 
-                String[] column = line.split("\\|", 31);
+                double graisse = Optional.of(columns[6]).filter(OffFichierApp::isDouble).map(Double::parseDouble).orElse(0.0);
+                double energie = Optional.of(columns[5]).filter(OffFichierApp::isDouble).map(Double::parseDouble).orElse(0.0);
+                Produit produit = new Produit(columns[2], graisse, energie, ProduitScore.valueOf(columns[3].toUpperCase()));
 
-                double graisse = Optional.of(column[6]).filter(OffFichierApp::isDouble).map(Double::parseDouble).orElse(0.0);
-                double energie = Optional.of(column[5]).filter(OffFichierApp::isDouble).map(Double::parseDouble).orElse(0.0);
-
-                Produit produit = new Produit(column[2], graisse, energie, ProduitScore.valueOf(column[3].toUpperCase()));
-                Marque marque = marques.computeIfAbsent(column[1], Marque::new);
+                Marque marque = marques.computeIfAbsent(columns[1], Marque::new);
                 produit.setMarque(marque);
-                Categorie categorie = categories.computeIfAbsent(column[0], Categorie::new);
-                produit.setCategorie(categorie);
-                for (String additifName : column[29].split(",")) {
-                    if (additifName.isBlank()) {
-                        continue;
-                    }
-                    Additif additif = additifs.computeIfAbsent(additifName, Additif::new);
-                    produit.addAdditif(additif);
-                }
-                for (String allergeneName : column[28].split(",")) {
-                    if (allergeneName.isBlank()) {
-                        continue;
-                    }
-                    Allergene allergene = allergenes.computeIfAbsent(allergeneName, Allergene::new);
-                    produit.addAllergene(allergene);
-                }
-                for (String ingredientName : column[4].split(",")) {
-                    if (ingredientName.isBlank()) {
-                        continue;
-                    }
-                    Ingredient ingredient = ingredients.computeIfAbsent(ingredientName, Ingredient::new);
-                    produit.addIngredient(ingredient);
-                }
+                produit.setCategorie(categories.computeIfAbsent(columns[0], Categorie::new));
+                Arrays.stream(columns[29].split(","))
+                        .filter(additifName -> !additifName.isBlank())
+                        .map(additifName -> additifs.computeIfAbsent(additifName, Additif::new))
+                        .forEach(produit::addAdditif);
+                Arrays.stream(columns[28].split(","))
+                        .filter(allergeneName -> !allergeneName.isBlank())
+                        .map(String::trim)
+                        .map(String::toUpperCase)
+                        .map(allergeneName -> allergenes.computeIfAbsent(allergeneName, Allergene::new))
+                        .forEach(produit::addAllergene);
+                Arrays.stream(columns[4].split(","))
+                        .filter(ingredientName -> !ingredientName.isBlank())
+                        .map(ingredientName -> ingredients.computeIfAbsent(ingredientName, Ingredient::new))
+                        .forEach(produit::addIngredient);
 
                 produits.add(produit);
             }
