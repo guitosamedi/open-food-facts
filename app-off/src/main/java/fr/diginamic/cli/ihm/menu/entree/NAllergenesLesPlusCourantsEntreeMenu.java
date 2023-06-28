@@ -40,8 +40,11 @@ public class NAllergenesLesPlusCourantsEntreeMenu extends EntreeMenu {
         if (null != allergenes) {
             System.out.println("Les " + limit + " allergènes les plus courants :");
             for (Allergene allergene : allergenes) {
-                System.out.println(allergene);
+                    System.out.println(allergene + " qui apparaît dans :" + allergene.getProduits().size() + " produit(s)");
             }
+
+        }else{
+            System.out.println("Aucun résultat dans la base.");
         }
     }
 }

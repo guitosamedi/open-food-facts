@@ -35,5 +35,5 @@ public interface IIngredientDAO {
 
     Ingredient findByNom(String nomIngredient);
 
-    List<Ingredient> findAllIngredientsCountProduitGroupByProduit( int limit);
+    List<Ingredient> findAllIngredientsCountProduitGroupByProduit(int limit);
 }

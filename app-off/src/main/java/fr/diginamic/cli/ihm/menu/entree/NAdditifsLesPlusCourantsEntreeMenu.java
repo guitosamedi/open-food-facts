@@ -40,7 +40,7 @@ public class NAdditifsLesPlusCourantsEntreeMenu extends EntreeMenu {
         if (null != additifs) {
             System.out.println("Les " + limit + " additifs les plus courants :");
             for (Additif additif : additifs) {
-                System.out.println(additif);
+                System.out.println(additif + " qui apparaît dans :" + additif.getProduits().size() + " produit(s)");
             }
         }
     }

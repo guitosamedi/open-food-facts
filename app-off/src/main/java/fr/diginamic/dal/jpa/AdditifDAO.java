@@ -11,7 +11,7 @@ import java.util.List;
 public class AdditifDAO implements IAdditifDAO {
     private static final String GET_ALL_REQ = "SELECT ad FROM Additif ad";
 
-    private static final String FIND_BY_COMMON_ADDITIF_REQ = "SELECT ad FROM Additif ad JOIN ad.produits p GROUP BY ad ORDER BY COUNT(p)";
+    private static final String FIND_BY_COMMON_ADDITIF_REQ = "SELECT ad FROM Additif ad JOIN ad.produits p GROUP BY ad ORDER BY COUNT(p) DESC";
     public AdditifDAO() {
     }
 

@@ -4,14 +4,14 @@ import fr.diginamic.entites.Ingredient;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
-
 import java.util.List;
 
 public class IngredientDAO implements IIngredientDAO {
 
     private static final String GET_ALL_REQ = "SELECT i FROM Ingredient i";
     private static final String FIND_BY_NOM_REQ = "SELECT i FROM Ingredient i WHERE i.nom = :nom";
-    private static final String FIND_BY_COMMON_INGREDIENT_REQ = "SELECT i FROM Ingredient i JOIN i.produits p GROUP BY i ORDER BY COUNT(p)";
+    private static final String FIND_BY_COMMON_INGREDIENT_REQ = "SELECT i FROM Ingredient i JOIN i.produits p GROUP BY i ORDER BY COUNT(p) DESC";
+
     public IngredientDAO() {
     }
 
@@ -109,7 +109,6 @@ public class IngredientDAO implements IIngredientDAO {
             throw new RuntimeException("Erreur lors de la récupération des ingrédients", e);
         }
     }
-
     @Override
     public List<Ingredient> findAllIngredientsCountProduitGroupByProduit(int limit) {
         EntityManagerFactory emf = EMFProvider.getEmf();
@@ -120,4 +119,5 @@ public class IngredientDAO implements IIngredientDAO {
             throw new RuntimeException("Erreur lors de la récupération des ingrédients courants", e);
         }
     }
+
 }

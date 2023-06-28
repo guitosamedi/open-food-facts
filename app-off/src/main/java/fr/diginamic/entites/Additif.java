@@ -15,7 +15,7 @@ public class Additif {
     @Column(length=100)
     private String nom;
 
-    @ManyToMany(mappedBy = "additifs")
+    @ManyToMany(mappedBy = "additifs", fetch = FetchType.EAGER)
     private Set<Produit> produits = new HashSet<>();
 
     public Additif() {}
