@@ -33,6 +33,7 @@ public class NAdditifsLesPlusCourantsEntreeMenu extends EntreeMenu {
 
         System.out.println("Combien d'additifs souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
+        scanner.nextLine();
 
         AdditifService additifService = AdditifService.getInstance();
         List<Additif> additifs = additifService.getAdditifsLesPlusCourants(limit);

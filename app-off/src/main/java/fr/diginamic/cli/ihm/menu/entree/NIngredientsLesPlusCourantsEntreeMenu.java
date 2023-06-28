@@ -33,6 +33,7 @@ public class NIngredientsLesPlusCourantsEntreeMenu extends EntreeMenu {
 
         System.out.println("Combien d'ingrédients souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
+        scanner.nextLine();
 
         IngredientService ingredientService = IngredientService.getInstance();
         List<Ingredient> ingredients = ingredientService.getIngredientsLesPlusCourants(limit);

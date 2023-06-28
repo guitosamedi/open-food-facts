@@ -32,10 +32,11 @@ public class NMeilleurProduitParCategorieEntreeMenu extends EntreeMenu {
         Scanner scanner = ScannerProvider.getScanner();
 
         System.out.println("Choix de la catégorie :");
-        String categorie = scanner.next();
+        String categorie = scanner.nextLine();
 
         System.out.println("Combien de produits souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
+        scanner.nextLine();
 
         ProduitService produitService = ProduitService.getInstance();
         List<Produit> produits = produitService.getMeilleursProduitsParCategorie(categorie, limit);
