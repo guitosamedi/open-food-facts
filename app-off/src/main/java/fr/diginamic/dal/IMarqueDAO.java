@@ -30,4 +30,6 @@ public interface IMarqueDAO {
      * @return
      */
     boolean deleteMarque(Marque marque);
+
+    Marque findByNom(String column);
 }

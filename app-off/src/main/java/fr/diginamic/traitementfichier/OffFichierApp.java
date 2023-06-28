@@ -1,5 +1,6 @@
 package fr.diginamic.traitementfichier;
 
+import fr.diginamic.dal.*;
 import fr.diginamic.entites.*;
 
 import java.io.FileInputStream;
@@ -9,6 +10,7 @@ import java.util.*;
 
 public class OffFichierApp {
     private static final String cheminFichier = "csv/open-food-facts.csv";
+
     public static void main(String[] args) {
         List<Produit> produits = new ArrayList<>();
         Map<String, Marque> marques = new HashMap<>();
@@ -16,6 +18,12 @@ public class OffFichierApp {
         Map<String, Additif> additifs = new HashMap<>();
         Map<String, Allergene> allergenes = new HashMap<>();
         Map<String, Ingredient> ingredients = new HashMap<>();
+
+        final IProduitDAO produitDAO = DAOFactory.getProduitDAO();
+        final IAdditifDAO additifDAO = DAOFactory.getAdditifDAO();
+        final IAllergeneDAO allergeneDAO = DAOFactory.getAllergeneDAO();
+        final IIngredientDAO ingredientDAO = DAOFactory.getIngredientDAO();
+
 
         try ( FileInputStream fileInputStream = new FileInputStream(cheminFichier);
               Scanner scanner = new Scanner(fileInputStream)) {
@@ -27,25 +35,25 @@ public class OffFichierApp {
                 double energie = Optional.of(columns[5]).filter(OffFichierApp::isDouble).map(Double::parseDouble).orElse(0.0);
                 Produit produit = new Produit(columns[2], graisse, energie, ProduitScore.valueOf(columns[3].toUpperCase()));
 
-                Marque marque = marques.computeIfAbsent(columns[1], Marque::new);
-                produit.setMarque(marque);
-                produit.setCategorie(categories.computeIfAbsent(columns[0], Categorie::new));
-                Arrays.stream(columns[29].split(","))
-                        .filter(additifName -> !additifName.isBlank())
-                        .map(additifName -> additifs.computeIfAbsent(additifName, Additif::new))
-                        .forEach(produit::addAdditif);
-                Arrays.stream(columns[28].split(","))
-                        .filter(allergeneName -> !allergeneName.isBlank())
-                        .map(String::trim)
-                        .map(String::toUpperCase)
-                        .map(allergeneName -> allergenes.computeIfAbsent(allergeneName, Allergene::new))
-                        .forEach(produit::addAllergene);
-                Arrays.stream(columns[4].split(","))
-                        .filter(ingredientName -> !ingredientName.isBlank())
-                        .map(ingredientName -> ingredients.computeIfAbsent(ingredientName, Ingredient::new))
-                        .forEach(produit::addIngredient);
+                produit.setMarque(getMarque(columns[1]));
+                produit.setCategorie(getCategorie(columns[0]));
+//                Arrays.stream(columns[29].split(","))
+//                        .filter(additifName -> !additifName.isBlank())
+//                        .map(additifName -> additifs.computeIfAbsent(additifName, Additif::new))
+//                        .forEach(produit::addAdditif);
+//                Arrays.stream(columns[28].split(","))
+//                        .filter(allergeneName -> !allergeneName.isBlank())
+//                        .map(String::trim)
+//                        .map(String::toUpperCase)
+//                        .map(allergeneName -> allergenes.computeIfAbsent(allergeneName, Allergene::new))
+//                        .forEach(produit::addAllergene);
+//                Arrays.stream(columns[4].split(","))
+//                        .filter(ingredientName -> !ingredientName.isBlank())
+//                        .map(ingredientName -> ingredients.computeIfAbsent(ingredientName, Ingredient::new))
+//                        .forEach(produit::addIngredient);
 
-                produits.add(produit);
+//                produits.add(produit);
+                produitDAO.createProduit(produit);
             }
 
         } catch (FileNotFoundException e) {
@@ -54,6 +62,30 @@ public class OffFichierApp {
             throw new RuntimeException(e);
         }
         System.out.println("end");
+    }
+
+    private static Categorie getCategorie(String nomCategorie) {
+        final ICategorieDAO categorieDAO = DAOFactory.getCategorieDAO();
+
+        Categorie categorie;
+        try {
+            categorie = categorieDAO.findByNom(nomCategorie);
+        } catch (RuntimeException e) {
+            categorie = new Categorie(nomCategorie);
+        }
+        return categorie;
+    }
+
+    private static Marque getMarque(String nomMarque) {
+        final IMarqueDAO marqueDAO = DAOFactory.getMarqueDAO();
+
+        Marque marque;
+        try {
+            marque = marqueDAO.findByNom(nomMarque);
+        } catch (RuntimeException e) {
+            marque = new Marque(nomMarque);
+        }
+        return marque;
     }
 
     private static boolean isDouble(String string) {
