@@ -70,4 +70,13 @@ public class Additif {
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Additif{");
+        sb.append("id=").append(id);
+        sb.append(", nom='").append(nom).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

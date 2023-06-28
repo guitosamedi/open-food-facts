@@ -4,6 +4,7 @@ import fr.diginamic.dal.DAOFactory;
 import fr.diginamic.dal.ICategorieDAO;
 import fr.diginamic.dal.IMarqueDAO;
 import fr.diginamic.dal.IProduitDAO;
+import fr.diginamic.dal.jpa.IngredientDAO;
 import fr.diginamic.dao.*;
 import fr.diginamic.entites.Categorie;
 import fr.diginamic.entites.Marque;
@@ -82,4 +83,8 @@ public class ProduitService {
 
         return produitDao.findAllProduitByMarqueAndCategorieOrderByScore(marque, categorie, limit);
     }
+
+   /* public List<Produit> getPlusCourantProduitsParIngredient(String nomIngredient, int limit){
+        IngredientDAO ingredient
+    }*/
 }

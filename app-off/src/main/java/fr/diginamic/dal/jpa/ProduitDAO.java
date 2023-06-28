@@ -10,13 +10,8 @@ import java.util.List;
 public class ProduitDAO implements IProduitDAO {
 
     private static final String GET_ALL_REQ = "SELECT p FROM Produit p";
-    //private static final String GET_BY_ID_REQ = "SELECT p FROM produit p WHERE p.id =:id";
-   // private static final String CREATE_REQ = "INSERT INTO produit (nom) VALUES (?)";
-    //private static final String UPDATE_REQ = "UPDATE produit SET (nom) WHERE id =:id ";
-   // private static final String DELETE_REQ = "DELETE FROM produit WHERE id =:id";
     private static final String GET_ALL_BY_MARQUE_ORDERBY_SCORE = "SELECT p FROM Produit p WHERE p.marque = :marque ORDER BY score";
     private static final String GET_ALL_BY_CATEGORIE_ORDERBY_SCORE = "SELECT p FROM Produit p WHERE p.categorie = :categorie ORDER BY score";
-
     public ProduitDAO() {}
 
     /**
@@ -29,8 +24,6 @@ public class ProduitDAO implements IProduitDAO {
             TypedQuery<Produit> p = em.createQuery(GET_ALL_REQ, Produit.class);
             return p.getResultList();
         } catch (Exception e) {
-            // Gestion des exceptions
-            // trouvé sur le net la méthode e.printStackTrace(); ???
             throw new RuntimeException("Erreur lors de la récupération des produits", e);
         }
     }
@@ -69,7 +62,7 @@ public class ProduitDAO implements IProduitDAO {
      * @return
      */
     @Override
-    public int updateProduit(Produit produit) { // doit-on mettre int id dans les paramètres de la méthode ?
+    public int updateProduit(Produit produit) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
@@ -112,8 +105,6 @@ public class ProduitDAO implements IProduitDAO {
             p.setParameter("marque", marque);
             return p.setMaxResults(limit).getResultList();
         } catch (Exception e) {
-            // Gestion des exceptions
-            // trouvé sur le net la méthode e.printStackTrace(); ???
             throw new RuntimeException("Erreur lors de la récupération des produits", e);
         }
     }
@@ -126,8 +117,6 @@ public class ProduitDAO implements IProduitDAO {
             p.setParameter("categorie", categorie);
             return p.setMaxResults(limit).getResultList();
         } catch (Exception e) {
-            // Gestion des exceptions
-            // trouvé sur le net la méthode e.printStackTrace(); ???
             throw new RuntimeException("Erreur lors de la récupération des produits", e);
         }
     }
@@ -136,5 +125,4 @@ public class ProduitDAO implements IProduitDAO {
     public List<Produit> findAllProduitByMarqueAndCategorieOrderByScore(Marque marque, Categorie categorie, int limit) {
         return null;
     }
-
 }

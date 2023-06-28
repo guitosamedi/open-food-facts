@@ -21,15 +21,15 @@ public interface IAllergeneDAO {
 
     /**
      * @param allerge
-     * @param id
      * @return
      */
     int updateAllergene(Allergene allerge);
 
     /**
      * @param allerge
-     * @param id
      * @return
      */
     boolean deleteAllergene(Allergene allerge);
+
+    List<Allergene> findAllAllergenesCountProduitGroupByProduit(int limit);
 }
