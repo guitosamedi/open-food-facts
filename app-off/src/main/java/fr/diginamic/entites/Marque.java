@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "marque")
 public class Marque {
     @Id
     @GeneratedValue
@@ -23,11 +24,18 @@ public class Marque {
         this.nom = nom;
     }
 
+    /**
+     * @param id
+     * @param nom
+     */
     public Marque(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }
 
+    /**
+     * @return
+     */
     public int getId() {
         return id;
     }
@@ -36,22 +44,37 @@ public class Marque {
         this.id = id;
     }
 
+    /**
+     * @return
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * @return
+     */
     public Set<Produit> getProduits() {
         return produits;
     }
 
+    /**
+     * @param produits
+     */
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
     }
 
+    /**
+     * @param produit
+     */
     public void addProduit(Produit produit){
         produit.setMarque(this);
     }
