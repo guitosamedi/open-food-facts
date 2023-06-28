@@ -12,6 +12,8 @@ public class ProduitDAO implements IProduitDAO {
     private static final String GET_ALL_REQ = "SELECT p FROM Produit p";
     private static final String GET_ALL_BY_MARQUE_ORDERBY_SCORE = "SELECT p FROM Produit p WHERE p.marque = :marque ORDER BY score";
     private static final String GET_ALL_BY_CATEGORIE_ORDERBY_SCORE = "SELECT p FROM Produit p WHERE p.categorie = :categorie ORDER BY score";
+    private static final String GET_ALL_BY_MARQUE_AND_BY_CATEGORIE_ORDERBY_SCORE = "SELECT p FROM Produit p WHERE p.marque = :marque AND p.categorie = :categorie ORDER BY score";
+
     public ProduitDAO() {}
 
     /**
@@ -123,6 +125,14 @@ public class ProduitDAO implements IProduitDAO {
 
     @Override
     public List<Produit> findAllProduitByMarqueAndCategorieOrderByScore(Marque marque, Categorie categorie, int limit) {
-        return null;
+        EntityManagerFactory emf = EMFProvider.getEmf();
+        try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Produit> p = em.createQuery(GET_ALL_BY_MARQUE_AND_BY_CATEGORIE_ORDERBY_SCORE, Produit.class);
+            p.setParameter("marque", marque);
+            p.setParameter("categorie", categorie);
+            return p.setMaxResults(limit).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des produits", e);
+        }
     }
 }

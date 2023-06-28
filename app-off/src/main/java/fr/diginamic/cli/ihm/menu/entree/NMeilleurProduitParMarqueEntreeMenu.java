@@ -32,10 +32,11 @@ public class NMeilleurProduitParMarqueEntreeMenu extends EntreeMenu {
         Scanner scanner = ScannerProvider.getScanner();
 
         System.out.println("Choix de la marque :");
-        String marque = scanner.next();
+        String marque = scanner.nextLine();
 
         System.out.println("Combien de produits souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
+        scanner.nextLine();
 
         ProduitService produitService = ProduitService.getInstance();
         List<Produit> produits = produitService.getMeilleursProduitsParMarque(marque, limit);

@@ -33,6 +33,7 @@ public class NAllergenesLesPlusCourantsEntreeMenu extends EntreeMenu {
 
         System.out.println("Combien d'allergènes souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
+        scanner.nextLine();
 
         AllergeneService allergeneService = AllergeneService.getInstance();
         List<Allergene> allergenes = allergeneService.getAllergenesLesPlusCourants(limit);

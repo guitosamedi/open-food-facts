@@ -4,8 +4,6 @@ import fr.diginamic.dal.DAOFactory;
 import fr.diginamic.dal.ICategorieDAO;
 import fr.diginamic.dal.IMarqueDAO;
 import fr.diginamic.dal.IProduitDAO;
-import fr.diginamic.dal.jpa.IngredientDAO;
-import fr.diginamic.dao.*;
 import fr.diginamic.entites.Categorie;
 import fr.diginamic.entites.Marque;
 import fr.diginamic.entites.Produit;
@@ -75,16 +73,12 @@ public class ProduitService {
      * @return une liste d'objets Produit représentant les meilleurs produits de la marque et de la catégorie
      */
     public List<Produit> getMeilleursProduitsParMarqueEtParCategorie(String nomMarque, String nomCategorie, int limit) {
-        MarqueDao marqueDao = MarqueDaoFactory.getMarqueDao();
+        IMarqueDAO marqueDao = DAOFactory.getMarqueDAO();
         Marque marque = marqueDao.findByNom(nomMarque);
 
-        CategorieDao categorieDao = CategorieDaoFactory.getCategorieDao();
+        ICategorieDAO categorieDao = DAOFactory.getCategorieDAO();
         Categorie categorie = categorieDao.findByNom(nomCategorie);
 
         return produitDao.findAllProduitByMarqueAndCategorieOrderByScore(marque, categorie, limit);
     }
-
-   /* public List<Produit> getPlusCourantProduitsParIngredient(String nomIngredient, int limit){
-        IngredientDAO ingredient
-    }*/
 }

@@ -49,6 +49,7 @@ public class Menu {
             System.out.println(this);
             System.out.println("Que souhaitez-vous faire ? ");
             input = scanner.nextInt();
+            scanner.nextLine();
             choix = entreesMenuParPosition.get(input);
 
             if (null == choix) {
