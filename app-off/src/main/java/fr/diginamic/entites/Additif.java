@@ -15,7 +15,7 @@ public class Additif {
     @Column(length=100)
     private String nom;
 
-    @ManyToMany(mappedBy = "additifs")
+    @ManyToMany(mappedBy = "additifs", fetch = FetchType.EAGER)
     private Set<Produit> produits = new HashSet<>();
 
     public Additif() {}
@@ -69,5 +69,14 @@ public class Additif {
      */
     public void setProduits(Set<Produit> produits) {
         this.produits = produits;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Additif{");
+        sb.append("id=").append(id);
+        sb.append(", nom='").append(nom).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

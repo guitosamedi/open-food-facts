@@ -1,6 +1,7 @@
 package fr.diginamic.dal.jpa;
 import fr.diginamic.dal.ICategorieDAO;
 import fr.diginamic.entites.Categorie;
+import fr.diginamic.entites.Marque;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class CategorieDAO implements ICategorieDAO {
     private static final String GET_ALL_REQ = "SELECT c FROM Categorie c";
+    private static final String FIND_BY_NOM_REQ = "SELECT c FROM Categorie c WHERE c.nom = :nom";
 
     /**
      * @return
@@ -92,5 +94,17 @@ public class CategorieDAO implements ICategorieDAO {
             throw new RuntimeException("Erreur lors de la suppression de la marque", e);
         }
         return false;
+    }
+
+    @Override
+    public Categorie findByNom(String nomCategorie) {
+        EntityManagerFactory emf = EMFProvider.getEmf();
+        try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Categorie> c = em.createQuery(FIND_BY_NOM_REQ, Categorie.class);
+            c.setParameter("nom", nomCategorie);
+            return c.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des marques", e);
+        }
     }
 }

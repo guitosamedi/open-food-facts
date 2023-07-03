@@ -12,7 +12,7 @@ public class AllergeneDAO implements IAllergeneDAO {
      *
      */
     private static final String GET_ALL_REQ = "SELECT al FROM Allergene al";
-
+    private static final String FIND_BY_COMMON_ALLERGENE_REQ = "SELECT al FROM Allergene al JOIN al.produits p GROUP BY al ORDER BY COUNT(p)";
     public AllergeneDAO() {
     }
 
@@ -97,5 +97,16 @@ public class AllergeneDAO implements IAllergeneDAO {
             throw new RuntimeException("Erreur lors de la suppression de l'allergène'", e);
         }
         return false;
+    }
+
+    @Override
+    public List<Allergene> findAllAllergenesCountProduitGroupByProduit(int limit) {
+        EntityManagerFactory emf = EMFProvider.getEmf();
+        try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Allergene> al = em.createQuery(FIND_BY_COMMON_ALLERGENE_REQ, Allergene.class);
+            return al.setMaxResults(limit).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des allergenes courants", e);
+        }
     }
 }

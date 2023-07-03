@@ -11,7 +11,7 @@ public class EMFProvider {
      */
     public static EntityManagerFactory getEmf(){
         if (emf == null){
-            Persistence.createEntityManagerFactory("app-off");
+            emf = Persistence.createEntityManagerFactory("app-off");
         }
         return emf;
     }
