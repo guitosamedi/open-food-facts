@@ -33,6 +33,7 @@ public class NAllergenesLesPlusCourantsEntreeMenu extends EntreeMenu {
 
         System.out.println("Combien d'allergènes souhaitez-vous afficher ?");
         int limit = scanner.nextInt();
+        scanner.nextLine();
 
         AllergeneService allergeneService = AllergeneService.getInstance();
         List<Allergene> allergenes = allergeneService.getAllergenesLesPlusCourants(limit);
@@ -40,8 +41,11 @@ public class NAllergenesLesPlusCourantsEntreeMenu extends EntreeMenu {
         if (null != allergenes) {
             System.out.println("Les " + limit + " allergènes les plus courants :");
             for (Allergene allergene : allergenes) {
-                System.out.println(allergene);
+                    System.out.println(allergene + " qui apparaît dans :" + allergene.getProduits().size() + " produit(s)");
             }
+
+        }else{
+            System.out.println("Aucun résultat dans la base.");
         }
     }
 }

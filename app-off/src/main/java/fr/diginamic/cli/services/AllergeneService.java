@@ -1,9 +1,7 @@
 package fr.diginamic.cli.services;
-
-import fr.diginamic.dao.AllergeneDao;
-import fr.diginamic.dao.AllergenesDaoFactory;
+import fr.diginamic.dal.DAOFactory;
+import fr.diginamic.dal.IAllergeneDAO;
 import fr.diginamic.entites.Allergene;
-
 import java.util.List;
 
 /**
@@ -24,10 +22,10 @@ public class AllergeneService {
         return instance;
     }
 
-    private final AllergeneDao allergeneDao;
+    private final IAllergeneDAO allergeneDao;
 
     {
-        allergeneDao = AllergenesDaoFactory.getAllergeneDao();
+        allergeneDao = DAOFactory.getAllergeneDAO();
     }
 
     private AllergeneService() {}

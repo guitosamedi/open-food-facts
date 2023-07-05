@@ -1,9 +1,7 @@
 package fr.diginamic.cli.services;
-
-import fr.diginamic.dao.IngredientDao;
-import fr.diginamic.dao.IngredientDaoFactory;
+import fr.diginamic.dal.DAOFactory;
+import fr.diginamic.dal.IIngredientDAO;
 import fr.diginamic.entites.Ingredient;
-
 import java.util.List;
 
 /**
@@ -24,10 +22,10 @@ public class IngredientService {
         return instance;
     }
 
-    private final IngredientDao ingredientDao;
+    private final IIngredientDAO ingredientDao;
 
     {
-        ingredientDao = IngredientDaoFactory.getIngredientDao();
+        ingredientDao = DAOFactory.getIngredientDAO();
     }
 
     private IngredientService() {}

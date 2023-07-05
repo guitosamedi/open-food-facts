@@ -30,4 +30,6 @@ public interface IAdditifDAO {
      * @return
      */
     boolean deleteAdditif(Additif additif);
+
+    List<Additif> findAllAdditifsCountProduitGroupByProduit(int limit);
 }

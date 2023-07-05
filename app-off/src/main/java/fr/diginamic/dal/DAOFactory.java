@@ -24,7 +24,7 @@ public final class DAOFactory {
             case MODE_JPA -> dao = new fr.diginamic.dal.jpa.ProduitDAO();
            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.ProduitDAO();
            // case MODE_XML -> dao = new fr.diginamic.dal.xml.ProduitDAO();
-            default -> throw new RuntimeException("Mode non implémenté !!!");
+            default -> throw new RuntimeException("Mode produit DAO non implémenté !!!");
         }
         return dao;
     }
@@ -38,7 +38,7 @@ public final class DAOFactory {
             case MODE_JPA -> dao = new fr.diginamic.dal.jpa.MarqueDAO();
             // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.MarqueDAO();
             // case MODE_XML -> dao = new fr.diginamic.dal.xml.MarqueDAO();
-            default -> throw new RuntimeException("Mode non implémenté !!!");
+            default -> throw new RuntimeException("Mode marque DAO non implémenté !!!");
         }
         return dao;
     }
@@ -47,31 +47,9 @@ public final class DAOFactory {
         ICategorieDAO dao =null;
         switch (MODE_COURANT) {
             case MODE_JPA -> dao = new fr.diginamic.dal.jpa.CategorieDAO();
-            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.ProduitDAO();
-            // case MODE_XML -> dao = new fr.diginamic.dal.xml.ProduitDAO();
-            default -> throw new RuntimeException("Mode non implémenté !!!");
-        }
-        return dao;
-    }
-
-    public static IAdditifDAO getAdditifDAO() {
-        IAdditifDAO dao =null;
-        switch (MODE_COURANT) {
-            case MODE_JPA -> dao = new fr.diginamic.dal.jpa.AdditifDAO();
-            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.ProduitDAO();
-            // case MODE_XML -> dao = new fr.diginamic.dal.xml.ProduitDAO();
-            default -> throw new RuntimeException("Mode non implémenté !!!");
-        }
-        return dao;
-    }
-
-    public static IAllergeneDAO getAllergeneDAO() {
-        IAllergeneDAO dao =null;
-        switch (MODE_COURANT) {
-            case MODE_JPA -> dao = new fr.diginamic.dal.jpa.AllergeneDAO();
-            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.ProduitDAO();
-            // case MODE_XML -> dao = new fr.diginamic.dal.xml.ProduitDAO();
-            default -> throw new RuntimeException("Mode non implémenté !!!");
+            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.MarqueDAO();
+            // case MODE_XML -> dao = new fr.diginamic.dal.xml.MarqueDAO();
+            default -> throw new RuntimeException("Mode categorie DAO non implémenté !!!");
         }
         return dao;
     }
@@ -80,10 +58,33 @@ public final class DAOFactory {
         IIngredientDAO dao =null;
         switch (MODE_COURANT) {
             case MODE_JPA -> dao = new fr.diginamic.dal.jpa.IngredientDAO();
-            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.ProduitDAO();
-            // case MODE_XML -> dao = new fr.diginamic.dal.xml.ProduitDAO();
-            default -> throw new RuntimeException("Mode non implémenté !!!");
+            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.MarqueDAO();
+            // case MODE_XML -> dao = new fr.diginamic.dal.xml.MarqueDAO();
+            default -> throw new RuntimeException("Mode ingredient DAO non implémenté !!!");
         }
         return dao;
     }
+
+    public static IAdditifDAO getAdditifDAO() {
+        IAdditifDAO dao =null;
+        switch (MODE_COURANT) {
+            case MODE_JPA -> dao = new fr.diginamic.dal.jpa.AdditifDAO();
+            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.MarqueDAO();
+            // case MODE_XML -> dao = new fr.diginamic.dal.xml.MarqueDAO();
+            default -> throw new RuntimeException("Mode additif DAO non implémenté !!!");
+        }
+        return dao;
+    }
+
+    public static IAllergeneDAO getAllergeneDAO() {
+        IAllergeneDAO dao =null;
+        switch (MODE_COURANT) {
+            case MODE_JPA -> dao = new fr.diginamic.dal.jpa.AllergeneDAO();
+            // case MODE_JDBC -> dao = new fr.diginamic.dal.jdbc.MarqueDAO();
+            // case MODE_XML -> dao = new fr.diginamic.dal.xml.MarqueDAO();
+            default -> throw new RuntimeException("Mode allergene DAO non implémenté !!!");
+        }
+        return dao;
+    }
+
 }

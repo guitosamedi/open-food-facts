@@ -31,5 +31,5 @@ public interface IMarqueDAO {
      */
     boolean deleteMarque(Marque marque);
 
-    Marque findByNom(String column);
+    Marque findByNom(String nom);
 }
