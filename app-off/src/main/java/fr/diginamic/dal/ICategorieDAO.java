@@ -1,5 +1,7 @@
 package fr.diginamic.dal;
 import fr.diginamic.entites.Categorie;
+import jakarta.persistence.EntityManager;
+
 import java.util.List;
 
 public interface ICategorieDAO {
@@ -31,5 +33,7 @@ public interface ICategorieDAO {
      */
     boolean deleteCategorie(Categorie categorie);
 
-    Categorie findByNom(String nomCategorie);
+    Categorie findByNom(String nom);
+
+    Categorie findByNom(String nom, EntityManager em);
 }

@@ -6,13 +6,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "produit") // On avait oublié cette annotation c'est pourquoi j'avais une erreur dans mes requêtes sql de ma Classe ProduitDAO
+@Cacheable
 public class Produit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 100)
+    @Column(length = 1000)
     private String nom;
 
     private double graisse;
@@ -22,16 +23,16 @@ public class Produit {
     @Enumerated(value= EnumType.STRING)
     private ProduitScore score;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name="id_marque")
     private Marque marque;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name="id_categorie")
     private Categorie categorie;
 
     /*** Association Contient **/
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name= "produit_ingredient",
            joinColumns = @JoinColumn(name="id_produit", referencedColumnName = "id"),
            inverseJoinColumns = @JoinColumn(name="id_ingredient", referencedColumnName = "id")
@@ -39,7 +40,7 @@ public class Produit {
     private Set<Ingredient> ingredients;
 
     /*** Association A **/
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name= "produit_allergene",
             joinColumns = @JoinColumn(name="id_produit", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="id_allergene", referencedColumnName = "id")
@@ -47,7 +48,7 @@ public class Produit {
     private Set<Allergene> allergenes;
 
     /*** Association Possede **/
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name= "produit_additif",
             joinColumns = @JoinColumn(name="id_produit", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="id_additif", referencedColumnName = "id")

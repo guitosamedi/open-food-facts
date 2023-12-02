@@ -99,16 +99,28 @@ public class IngredientDAO implements IIngredientDAO {
     }
 
     @Override
-    public Ingredient findByNom(String nomIngredient){
+    public Ingredient findByNom(String nom) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
             TypedQuery<Ingredient> i = em.createQuery(FIND_BY_NOM_REQ, Ingredient.class);
-           i.setParameter("nom", nomIngredient);
+            i.setParameter("nom", nom);
             return i.getSingleResult();
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la récupération des ingrédients", e);
         }
     }
+
+    @Override
+    public Ingredient findByNom(String nom, EntityManager em) {
+        try {
+            TypedQuery<Ingredient> i = em.createQuery(FIND_BY_NOM_REQ, Ingredient.class);
+            i.setParameter("nom", nom);
+            return i.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des ingrédients", e);
+        }
+    }
+
     @Override
     public List<Ingredient> findAllIngredientsCountProduitGroupByProduit(int limit) {
         EntityManagerFactory emf = EMFProvider.getEmf();

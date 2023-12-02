@@ -7,12 +7,13 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ingredient")
+@Cacheable
 public class Ingredient {
     @Id
     @GeneratedValue
     private int id;
 
-    @Column(length=100)
+    @Column(length=1000)
     private String nom;
 
     @ManyToMany(mappedBy = "ingredients", fetch = FetchType.EAGER)

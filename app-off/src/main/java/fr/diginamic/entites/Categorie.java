@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "categorie")
+@Cacheable
 public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +15,7 @@ public class Categorie {
 
     private String nom;
 
-    @OneToMany(mappedBy = "categorie")
+    @OneToMany(mappedBy = "categorie", fetch = FetchType.EAGER)
     private Set<Produit> produits = new HashSet<>();
 
     public Categorie() {}
@@ -80,5 +81,6 @@ public class Categorie {
     public void addProduit(Produit produit){
         produit.setCategorie(this);
     }
+
 
 }

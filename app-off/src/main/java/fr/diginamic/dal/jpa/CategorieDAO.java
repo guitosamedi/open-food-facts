@@ -3,13 +3,14 @@ import fr.diginamic.dal.ICategorieDAO;
 import fr.diginamic.entites.Categorie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TransactionRequiredException;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
 public class CategorieDAO implements ICategorieDAO {
     private static final String GET_ALL_REQ = "SELECT c FROM Categorie c";
-    private static final String FIND_BY_NOM_REQ = "SELECT c FROM Categorie c WHERE c.nom = :nom";
+    public static final String FIND_BY_NOM_REQ = "SELECT c FROM Categorie c WHERE c.nom = :nom";
 
     /**
      * @return
@@ -98,6 +99,17 @@ public class CategorieDAO implements ICategorieDAO {
     public Categorie findByNom(String nom) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Categorie> c = em.createQuery(FIND_BY_NOM_REQ, Categorie.class);
+            c.setParameter("nom", nom);
+            return c.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des catégories", e);
+        }
+    }
+
+    @Override
+    public Categorie findByNom(String nom, EntityManager em) {
+        try {
             TypedQuery<Categorie> c = em.createQuery(FIND_BY_NOM_REQ, Categorie.class);
             c.setParameter("nom", nom);
             return c.getSingleResult();

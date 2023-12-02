@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "additif")
+@Cacheable
 public class Additif {
     @Id
     @GeneratedValue

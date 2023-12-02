@@ -12,7 +12,9 @@ public class AllergeneDAO implements IAllergeneDAO {
      *
      */
     private static final String GET_ALL_REQ = "SELECT al FROM Allergene al";
-    private static final String FIND_BY_COMMON_ALLERGENE_REQ = "SELECT al FROM Allergene al JOIN al.produits p GROUP BY al ORDER BY COUNT(p)";
+    private static final String FIND_BY_NOM_REQ = "SELECT a FROM Allergene a WHERE a.nom = :nom";
+
+    private static final String FIND_BY_COMMON_ALLERGENE_REQ = "SELECT al FROM Allergene al JOIN al.produits p GROUP BY al ORDER BY COUNT(p) DESC";
     public AllergeneDAO() {
     }
 
@@ -97,6 +99,29 @@ public class AllergeneDAO implements IAllergeneDAO {
             throw new RuntimeException("Erreur lors de la suppression de l'allergène'", e);
         }
         return false;
+    }
+
+    @Override
+    public Allergene findByNom(String nom) {
+        EntityManagerFactory emf = EMFProvider.getEmf();
+        try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Allergene> al = em.createQuery(FIND_BY_NOM_REQ, Allergene.class);
+            al.setParameter("nom", nom);
+            return al.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des allergènes", e);
+        }
+    }
+
+    @Override
+    public Allergene findByNom(String nom, EntityManager em) {
+        try {
+            TypedQuery<Allergene> al = em.createQuery(FIND_BY_NOM_REQ, Allergene.class);
+            al.setParameter("nom", nom);
+            return al.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des allergènes", e);
+        }
     }
 
     @Override

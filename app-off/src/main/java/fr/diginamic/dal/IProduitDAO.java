@@ -3,6 +3,8 @@ import fr.diginamic.entites.Categorie;
 import fr.diginamic.entites.Ingredient;
 import fr.diginamic.entites.Marque;
 import fr.diginamic.entites.Produit;
+import jakarta.persistence.EntityManager;
+
 import java.util.List;
 
 public interface IProduitDAO {
@@ -22,6 +24,8 @@ public interface IProduitDAO {
      * @param produit
      */
     void createProduit(Produit produit);
+
+    void createProduit(Produit produit, EntityManager em);
 
     /**
      * @param produit

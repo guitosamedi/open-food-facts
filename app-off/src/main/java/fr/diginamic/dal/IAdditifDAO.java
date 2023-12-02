@@ -1,5 +1,7 @@
 package fr.diginamic.dal;
 import fr.diginamic.entites.Additif;
+import jakarta.persistence.EntityManager;
+
 import java.util.List;
 
 public interface IAdditifDAO {
@@ -30,6 +32,10 @@ public interface IAdditifDAO {
      * @return
      */
     boolean deleteAdditif(Additif additif);
+
+    Additif findByNom(String nom);
+
+    Additif findByNom(String nom, EntityManager em);
 
     List<Additif> findAllAdditifsCountProduitGroupByProduit(int limit);
 }

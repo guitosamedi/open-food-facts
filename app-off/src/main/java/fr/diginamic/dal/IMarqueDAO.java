@@ -1,5 +1,7 @@
 package fr.diginamic.dal;
 import fr.diginamic.entites.Marque;
+import jakarta.persistence.EntityManager;
+
 import java.util.List;
 
 public interface IMarqueDAO {
@@ -32,4 +34,6 @@ public interface IMarqueDAO {
     boolean deleteMarque(Marque marque);
 
     Marque findByNom(String nom);
+
+    Marque findByNom(String nom, EntityManager em);
 }

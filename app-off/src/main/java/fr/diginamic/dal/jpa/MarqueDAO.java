@@ -3,6 +3,7 @@ import fr.diginamic.dal.IMarqueDAO;
 import fr.diginamic.entites.Marque;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TransactionRequiredException;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 
@@ -101,6 +102,17 @@ public class MarqueDAO implements IMarqueDAO {
     public Marque findByNom(String nom) {
         EntityManagerFactory emf = EMFProvider.getEmf();
         try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Marque> m = em.createQuery(FIND_BY_NOM_REQ, Marque.class);
+            m.setParameter("nom", nom);
+            return m.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des marques", e);
+        }
+    }
+
+    @Override
+    public Marque findByNom(String nom, EntityManager em) {
+        try {
             TypedQuery<Marque> m = em.createQuery(FIND_BY_NOM_REQ, Marque.class);
             m.setParameter("nom", nom);
             return m.getSingleResult();

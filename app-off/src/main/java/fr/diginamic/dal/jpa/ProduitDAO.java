@@ -1,10 +1,15 @@
 package fr.diginamic.dal.jpa;
-import fr.diginamic.dal.IProduitDAO;
+import fr.diginamic.dal.*;
+import fr.diginamic.entites.Additif;
+import fr.diginamic.entites.Categorie;
+import fr.diginamic.entites.Marque;
 import fr.diginamic.entites.Categorie;
 import fr.diginamic.entites.Marque;
 import fr.diginamic.entites.Produit;
 import jakarta.persistence.*;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class ProduitDAO implements IProduitDAO {
@@ -54,6 +59,22 @@ public class ProduitDAO implements IProduitDAO {
             em.getTransaction().begin();
             em.persist(produit);
             em.getTransaction().commit();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la création du produit", e);
+        }
+    }
+
+    @Override
+    public void createProduit(Produit produit, EntityManager em) {
+        try {
+            boolean transactionAlreadyActive = em.getTransaction().isActive();
+            if (!transactionAlreadyActive) {
+                em.getTransaction().begin();
+            }
+            em.persist(produit);
+            if (!transactionAlreadyActive) {
+                em.getTransaction().commit();
+            }
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la création du produit", e);
         }

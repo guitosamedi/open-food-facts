@@ -9,10 +9,17 @@
         <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/off"/>
         <property name="jakarta.persistence.jdbc.user" value="root"/>
         <property name="jakarta.persistence.jdbc.password" value=""/>
-        <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+        <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
         <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
-        <property name="hibernate.show_sql" value="true"/>
-        <property name="hibernate.format_sql" value="true"/>
+
+        <property name="jakarta.persistence.sharedCache.mode" value="ENABLE_SELECTIVE"/>
+
+        <property name="hibernate.cache.use_second_level_cache" value="true"/>
+        <property name="hibernate.cache.region.factory_class" value="jcache"/>
+        <property name="hibernate.cache.provider_class" value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/>
+
+        <property name="hibernate.show_sql" value="false"/>
+        <property name="hibernate.format_sql" value="false"/>
       </properties>
   </persistence-unit>
 </persistence>

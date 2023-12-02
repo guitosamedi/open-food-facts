@@ -1,5 +1,7 @@
 package fr.diginamic.dal;
 import fr.diginamic.entites.Ingredient;
+import jakarta.persistence.EntityManager;
+
 import fr.diginamic.entites.Produit;
 
 import java.util.List;
@@ -33,7 +35,9 @@ public interface IIngredientDAO {
      */
     boolean deleteIngredient(Ingredient ingredient);
 
-    Ingredient findByNom(String nomIngredient);
+    Ingredient findByNom(String nom);
+
+    Ingredient findByNom(String nom, EntityManager em);
 
     List<Ingredient> findAllIngredientsCountProduitGroupByProduit(int limit);
 }

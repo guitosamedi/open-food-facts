@@ -10,6 +10,7 @@ import java.util.List;
 
 public class AdditifDAO implements IAdditifDAO {
     private static final String GET_ALL_REQ = "SELECT ad FROM Additif ad";
+    private static final String FIND_BY_NOM = "SELECT a FROM Additif a WHERE a.nom = :nom";
 
     private static final String FIND_BY_COMMON_ADDITIF_REQ = "SELECT ad FROM Additif ad JOIN ad.produits p GROUP BY ad ORDER BY COUNT(p) DESC";
     public AdditifDAO() {
@@ -106,6 +107,29 @@ public class AdditifDAO implements IAdditifDAO {
             return ad.setMaxResults(limit).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la récupération des additifs courants", e);
+        }
+    }
+
+    @Override
+    public Additif findByNom(String nom) {
+        EntityManagerFactory emf = EMFProvider.getEmf();
+        try (EntityManager em = emf.createEntityManager()){
+            TypedQuery<Additif> ad = em.createQuery(FIND_BY_NOM, Additif.class);
+            ad.setParameter("nom", nom);
+            return ad.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des additifs", e);
+        }
+    }
+
+    @Override
+    public Additif findByNom(String nom, EntityManager em) {
+        try {
+            TypedQuery<Additif> ad = em.createQuery(FIND_BY_NOM, Additif.class);
+            ad.setParameter("nom", nom);
+            return ad.getSingleResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la récupération des additifs", e);
         }
     }
 }
